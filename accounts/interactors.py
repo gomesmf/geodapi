@@ -14,14 +14,14 @@ class CreateAccountUCI:
         self.password = password
 
 class CreateAccountUCO:
-    def __init__(self, aid: int) -> None:
-        self.aid = aid
+    def __init__(self, id: int) -> None:
+        self.id = id
 
 def create_account_interactor(dba: DBAccountsInterface, ph: Callable, ucin: CreateAccountUCI):
     password_hashed = ph(ucin.password)
 
-    aid = dba.create(ucin.type, ucin.email, ucin.name, password_hashed)
+    id = dba.create(ucin.type, ucin.email, ucin.name, password_hashed)
 
-    ucout = CreateAccountUCO(aid=aid)
+    ucout = CreateAccountUCO(id=id)
 
     return ucout

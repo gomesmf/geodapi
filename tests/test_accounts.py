@@ -1,11 +1,17 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
-from accounts.controllers import CreateAccountRequestModel, create_account_controller
-
+from accounts.controllers import (
+    CreateAccountReqM,
+    create_account_controller
+)
 from accounts.interactors import (
     CreateAccountUCI,
     CreateAccountUCO,
     create_account_interactor
+)
+from accounts.presenters import (
+    CreateAccountVM,
+    create_account_presenter
 )
 
 class TestCreateAccountInteractor(TestCase):
@@ -29,21 +35,29 @@ class TestCreateAccountInteractor(TestCase):
 
 class TestCreateAccountController(TestCase):
     def test_success(self):
-        rm = CreateAccountRequestModel(
+        reqm = CreateAccountReqM(
             type="deliveryguy",
             name="matheus",
             email="matheus@email.com",
             password="secret"
         )
 
-        ucin = create_account_controller(rm)
+        ucin = create_account_controller(reqm)
 
         self.assertIsInstance(ucin, CreateAccountUCI)
-        self.assertEqual(ucin.type, rm.type)
-        self.assertEqual(ucin.name, rm.name)
-        self.assertEqual(ucin.email, rm.email)
-        self.assertEqual(ucin.password, rm.password)
+        self.assertEqual(ucin.type, reqm.type)
+        self.assertEqual(ucin.name, reqm.name)
+        self.assertEqual(ucin.email, reqm.email)
+        self.assertEqual(ucin.password, reqm.password)
 
+class TestCreateAccountPresenter(TestCase):
+    def test_success(self):
+        ucout = CreateAccountUCO(id=1)
+
+        vm = create_account_presenter(ucout)
+
+        self.assertIsInstance(vm, CreateAccountVM)
+        self.assertEqual(vm.id, ucout.id)
 
 if __name__ == "__main__":
     main()

@@ -1,12 +1,12 @@
 from pydantic import BaseModel
 from accounts.interactors import CreateAccountUCI
 
-class CreateAccountRequestModel(BaseModel):
+class CreateAccountReqM(BaseModel):
     type: str
     name: str
     email: str
     password: str
 
-def create_account_controller(rm: CreateAccountRequestModel) -> CreateAccountUCI:
-    ucin =  CreateAccountUCI(rm.type, rm.name, rm.email, rm.password)
+def create_account_controller(reqm: CreateAccountReqM) -> CreateAccountUCI:
+    ucin =  CreateAccountUCI(reqm.type, reqm.name, reqm.email, reqm.password)
     return ucin
