@@ -6,22 +6,22 @@ class DBAccountsInterface(ABC):
     def create(self, ) -> int:
         pass
 
-class CreateAccountUseCaseInput:
-    def __init__(self, atype: str, name: str, email: str, password: str) -> None:
-        self.atype = atype
+class CreateAccountUCI:
+    def __init__(self, type: str, name: str, email: str, password: str) -> None:
+        self.type = type
         self.name = name
         self.email = email
         self.password = password
 
-class CreateAccountUseCaseOutput:
+class CreateAccountUCO:
     def __init__(self, aid: int) -> None:
         self.aid = aid
 
-def create_account_interactor(dba: DBAccountsInterface, ph: Callable, ucin: CreateAccountUseCaseInput):
+def create_account_interactor(dba: DBAccountsInterface, ph: Callable, ucin: CreateAccountUCI):
     password_hashed = ph(ucin.password)
 
-    aid = dba.create(ucin.atype, ucin.email, ucin.name, password_hashed)
+    aid = dba.create(ucin.type, ucin.email, ucin.name, password_hashed)
 
-    ucout = CreateAccountUseCaseOutput(aid=aid)
+    ucout = CreateAccountUCO(aid=aid)
 
     return ucout
