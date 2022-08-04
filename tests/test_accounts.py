@@ -24,7 +24,7 @@ class TestCreateAccountInteractor(TestCase):
 
         self.assertIsInstance(ucout, CreateAccountUseCaseOutput)
         self.assertEqual(dba.create.call_count, 1)
-        self.assertEqual(ph.hash.call_count, 1)
+        self.assertEqual(ph.call_count, 1)
 
 if __name__ == "__main__":
     main()

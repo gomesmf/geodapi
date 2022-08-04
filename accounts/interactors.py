@@ -1,13 +1,9 @@
 from abc import ABC, abstractmethod
+from typing import Callable
 
 class DBAccountsInterface(ABC):
     @abstractmethod
     def create(self, ) -> int:
-        pass
-
-class PasswordHasherInterface(ABC):
-    @abstractmethod
-    def hash(self, password: str):
         pass
 
 class CreateAccountUseCaseInput:
@@ -21,8 +17,8 @@ class CreateAccountUseCaseOutput:
     def __init__(self, aid: int) -> None:
         self.aid = aid
 
-def create_account_interactor(dba: DBAccountsInterface, ph: PasswordHasherInterface, ucin: CreateAccountUseCaseInput):
-    password_hashed = ph.hash(ucin.password)
+def create_account_interactor(dba: DBAccountsInterface, ph: Callable, ucin: CreateAccountUseCaseInput):
+    password_hashed = ph(ucin.password)
 
     aid = dba.create(ucin.atype, ucin.email, ucin.name, password_hashed)
 
