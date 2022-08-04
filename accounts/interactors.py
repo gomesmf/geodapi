@@ -32,7 +32,7 @@ def _validate_name(name: str) -> bool:
 def _validate_email(email: str) -> bool:
     return "@" in email
 
-def create_account_interactor(dba: DBAccountsInterface, ph: Callable, ucin: CreateAccountUCI) -> CreateAccountUCO:
+def create_account_interactor(dba: DBAccountsInterface, ph: Callable[[str], str], ucin: CreateAccountUCI) -> CreateAccountUCO:
     if not _validate_password(ucin.password):
         return CreateAccountUCO(errmsg=ERRMSG_INVALID_PASSWORD)
 
