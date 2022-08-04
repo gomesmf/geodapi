@@ -1,0 +1,23 @@
+# procedural
+
+@app.post("/accounts")
+def create_account(request):
+    ucinput = create_account_controller(request)
+    ucoutput = create_account_interactor(db, ucinput)
+    vmodel = create_account_presenter(ucoutput)
+    response = create_account_view(vmodel)
+
+    return response
+
+# oo
+
+@app.post("/accounts")
+def create_account(request):
+    v = CreateAccountView()
+    p = CreateAccountPresenter()
+    uc = CreateAccountUseCase(db, p)
+    c = CreateAccountController(uc)
+
+    c.execute(request)
+
+    return v.response(p.view_model)
