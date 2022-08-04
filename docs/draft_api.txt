@@ -9,6 +9,21 @@ def create_account(request):
 
     return response
 
+- WebServer gathers input data from the user and hands it to the Controller
+
+- Controller packages that data and passes to the UseCaseInteractor
+
+- UseCaseInteractor interprets the data and uses it to control the dance of the Entities.
+- UseCaseInteractor also uses the DataAccessInterface to bring the data used by those Entities into
+memory from the Database.
+- UseCaseInteractor gathers data from the Entities and constructs the UseCaseOutput
+
+- Presenter repackage the UseCaseOutput into viewable form as the ViewModel (VM)
+
+- ViewModel contains mostly strings and flags that View uses to display the data
+
+- View move the data from the ViewModel into the HTML page
+
 # oo
 
 @app.post("/accounts")
@@ -21,3 +36,6 @@ def create_account(request):
     c.execute(request)
 
     return v.response(p.view_model)
+
+
+
