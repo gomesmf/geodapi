@@ -1,0 +1,39 @@
+Actors
+
+- Buyer
+- Seller
+- Delivery Guy (DG)
+- Admin
+
+Buyer use cases
+
+- Buyer signup to platform
+- Buyer register payment information
+- Buyer update payment information
+- Buyer login to platform
+- Buyer logout from platform
+- Buyer view catalog of products
+- Buyer add products to shopcart
+- Buyer remove products from shopcart
+- Buyer update shopcart
+- Buyer place order
+- Buyer view order status
+- Buyer view order history
+
+Seller use cases
+
+- Seller signup to platform
+- Seller register payment information
+- Seller add product to its catalog
+- Seller remove product from its catalog
+- Seller update product from its catalog
+- Seller view its product catalog
+- Seller view its sells
+- Seller update order status to ready
+
+Delivery guy use cases
+
+- Delivery guy accept delivery
+- Delivery guy reject delivery
+- Delivery guy update order status to arrived at buyer location
+- Delivery guy update order status to delivered
