@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from inmemdb import get_dba
+from fake import get_dba
 
 dba = get_dba()
 

@@ -22,3 +22,6 @@ class InMemoryDBAccounts(DBAccountsInterface):
 
 def get_dba():
     return InMemoryDBAccounts()
+
+def fake_password_hash(password: str) -> str:
+    return f"hash:{password}"
