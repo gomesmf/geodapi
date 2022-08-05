@@ -1,7 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel
 
-from accounts.presenters import CreateAccountVM
+from .presenter import CreateAccountVM
 
 class CreateAccountResM(BaseModel):
     id: Optional[int]

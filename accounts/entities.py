@@ -1,5 +1,7 @@
 from enum import Enum
 
+MIN_LEN_PASSWORD = 4
+
 class AccountType(Enum):
     SELLER = "seller"
     BUYER = "buyer"
@@ -12,3 +14,19 @@ class Account:
         self.name = name
         self.email = email
         self.password_hashed = password_hashed
+
+def validate_acctype(t: str) -> bool:
+    try:
+        AccountType(t)
+    except ValueError:
+        return False
+    return True
+
+def validate_password(p: str) -> bool:
+    return len(p) >= MIN_LEN_PASSWORD
+
+def validate_name(name: str) -> bool:
+    return len(name) > 0
+
+def validate_email(email: str) -> bool:
+    return "@" in email

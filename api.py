@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from accounts.controllers import CreateAccountReqM, create_account_controller
-from accounts.interactors import create_account_interactor
-from accounts.presenters import create_account_presenter
-from accounts.views import create_account_view
+from accounts.CreateAccount.controller import CreateAccountReqM, create_account_controller
+from accounts.CreateAccount.interactor import create_account_interactor
+from accounts.CreateAccount.presenter import create_account_presenter
+from accounts.CreateAccount.view import create_account_view
 
 from fake import get_dba, fake_password_hash
 

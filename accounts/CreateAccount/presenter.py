@@ -1,4 +1,4 @@
-from accounts.interactors import CreateAccountUCO
+from .interactor import CreateAccountUCO
 
 class CreateAccountVM:
     def __init__(self, id: int = None, errmsg: str = None) -> None:
