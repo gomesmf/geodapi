@@ -44,7 +44,7 @@ def create_account_interactor(dba: DBAccountsInterface, ph: Callable[[str], str]
 
     password_hashed = ph(ucin.password)
 
-    id = dba.create(ucin.type, ucin.email, ucin.name, password_hashed)
+    id = dba.create(ucin.type, ucin.name, ucin.email, password_hashed)
 
     ucout = CreateAccountUCO(id=id)
 

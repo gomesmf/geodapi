@@ -8,5 +8,5 @@ class CreateAccountReqM(BaseModel):
     password: str
 
 def create_account_controller(reqm: CreateAccountReqM) -> CreateAccountUCI:
-    ucin =  CreateAccountUCI(reqm.type, reqm.name, reqm.email, reqm.password)
+    ucin =  CreateAccountUCI(type=reqm.type, name=reqm.name, email=reqm.email, password=reqm.password)
     return ucin

@@ -17,7 +17,10 @@ from accounts.presenters import (
     CreateAccountVM,
     create_account_presenter
 )
-
+from accounts.views import (
+    CreateAccountResM,
+    create_account_view
+)
 
 _valid_name = "matheus"
 _valid_email = "matheus@email.com"
@@ -111,6 +114,22 @@ class TestCreateAccountPresenter(TestCase):
 
         self.assertIsInstance(vm, CreateAccountVM)
         self.assertEqual(vm.id, ucout.id)
+
+class TestCreateAccountView(TestCase):
+    def test_success(self):
+        vm = CreateAccountVM(id=1)
+
+        resm = create_account_view(vm)
+
+        self.assertIsInstance(resm, CreateAccountResM)
+        self.assertEqual(resm.id, vm.id)
+        self.assertIsNone(resm.errmsg)
+
+    def test_errmsg(self):
+        vm = CreateAccountVM(errmsg="errormsg")
+        resm = create_account_view(vm)
+        self.assertIsInstance(resm, CreateAccountResM)
+        self.assertEqual(resm.errmsg, vm.errmsg)
 
 if __name__ == "__main__":
     main()
