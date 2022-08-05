@@ -26,13 +26,13 @@ class TestInteractor(TestCase):
 
         dba = Mock()
         dba.account_id_exists.return_value = True
-        dba.delete_account.return_value = True
+        dba.delete.return_value = True
 
         ucout = delete_account_interactor(dba, ucin)
 
         self.assertIsInstance(ucout, DeleteAccountUCO)
         self.assertEqual(dba.account_id_exists.call_count, 1)
-        self.assertEqual(dba.delete_account.call_count, 1)
+        self.assertEqual(dba.delete.call_count, 1)
         self.assertEqual(ucout.account_id, ucin.account_id)
         self.assertIsNone(ucout.errmsg)
 
@@ -56,7 +56,7 @@ class TestInteractor(TestCase):
 
         dba = Mock()
         dba.account_id_exists.return_value = True
-        dba.delete_account.return_value = False
+        dba.delete.return_value = False
 
         ucout = delete_account_interactor(dba, ucin)
 
