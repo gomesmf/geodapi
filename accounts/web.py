@@ -1,4 +1,8 @@
 from typing import Callable
+from accounts.DeleteAccount.controller import delete_account_controller
+from accounts.DeleteAccount.interactor import delete_account_interactor
+from accounts.DeleteAccount.presenter import delete_account_presenter
+from accounts.DeleteAccount.view import DeleteAccountResM, delete_account_view
 
 from .data import DBAccountsInterface
 from .service import AccountsServiceInterface
@@ -26,3 +30,9 @@ class AccountsService(AccountsServiceInterface):
         resm = get_account_types_view(vm)
         return resm
 
+    def delete_account(self, dba: DBAccountsInterface, account_id: int) -> DeleteAccountResM:
+        ucin = delete_account_controller(account_id)
+        ucout = delete_account_interactor(dba, ucin)
+        vm = delete_account_presenter(ucout)
+        resm = delete_account_view(vm)
+        return resm
