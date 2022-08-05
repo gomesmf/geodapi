@@ -16,17 +16,17 @@ ph = fake_password_hash
 
 app = FastAPI(description="Delivery Guy API")
 
+acs = AccountsService()
+
 @app.get("/accounts")
 def get_accounts():
     return dba.data
 
 @app.get("/accounts/new", response_model=GetAccountTypesResM)
 def get_accounts():
-    acs = AccountsService()
     return acs.get_account_types()
 
 @app.post("/accounts", response_model=CreateAccountResM)
 def create_account(reqm: CreateAccountReqM):
-    acs = AccountsService()
     resm = acs.create_account(dba, ph, reqm)
     return resm
