@@ -32,8 +32,6 @@ def create_account(reqm: CreateAccountReqM):
     resm = acs.create_account(dba, ph, reqm)
 
     if resm.errmsg:
-        return JSONResponse(status_code=400, content={"message": resm.errmsg})
+        return JSONResponse(status_code=400, content=resm.dict())
 
-    print(resm.dict(exclude={"errmsg"}))
-
-    return resm.dict(exclude={"errmsg"})
+    return resm
