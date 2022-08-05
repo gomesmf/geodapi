@@ -6,7 +6,7 @@ from accounts.GetAccountTypes.presenter import GetAccountTypesVM, get_account_ty
 from accounts.GetAccountTypes.view import GetAccountTypesResM, get_account_types_view
 
 class TestController(TestCase):
-    def test_success():
+    def test_success(self):
         pass
 
 class TestInteractor(TestCase):
