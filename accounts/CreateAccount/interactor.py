@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
 from typing import Callable
+from accounts.data import DBAccountsInterface
 
 from accounts.entities import (
     Account,
@@ -8,11 +8,6 @@ from accounts.entities import (
     validate_password,
     validate_email
 )
-
-class DBAccountsInterface(ABC):
-    @abstractmethod
-    def create(self, a: Account) -> int:
-        pass
 
 class CreateAccountUCI:
     def __init__(self, type: str, name: str, email: str, password: str) -> None:

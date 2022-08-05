@@ -4,7 +4,9 @@ from accounts.CreateAccount.interactor import create_account_interactor
 from accounts.CreateAccount.presenter import create_account_presenter
 from accounts.CreateAccount.view import create_account_view
 
-from fake import get_dba, fake_password_hash
+from accounts.inmemdb import get_dba
+
+from fake import fake_password_hash
 
 dba = get_dba()
 
