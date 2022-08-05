@@ -22,5 +22,11 @@ class InMemoryDBAccounts(DBAccountsInterface):
         a.id = aid
         return aid
 
+    def email_exists(self, email: str) -> bool:
+        for _, ainfo in self.data["accounts"].items():
+            if ainfo["email"] == email:
+                return True
+        return False
+
 def get_dba():
     return InMemoryDBAccounts()

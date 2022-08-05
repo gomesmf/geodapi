@@ -6,6 +6,7 @@ from accounts.CreateAccount.controller import (
     create_account_controller
 )
 from accounts.CreateAccount.interactor import (
+    ERRMSG_EMAIL_EXISTS,
     ERRMSG_INVALID_ACCTYPE,
     ERRMSG_INVALID_EMAIL,
     ERRMSG_INVALID_NAME,
@@ -41,12 +42,15 @@ class TestCreateAccountInteractor(TestCase):
             password=_vld_password,
         )
         dba = Mock()
+        dba.email_exists.return_value = False
+
         ph = Mock()
 
         ucout = create_account_interactor(dba, ph, ucin)
 
         self.assertIsInstance(ucout, CreateAccountUCO)
         self.assertEqual(dba.create.call_count, 1)
+        self.assertEqual(dba.email_exists.call_count, 1)
         self.assertEqual(ph.call_count, 1)
 
     def test_invld_acctype(self):
@@ -106,6 +110,24 @@ class TestCreateAccountInteractor(TestCase):
         ucout = create_account_interactor(dba, ph, ucin)
         self.assertIsInstance(ucout, CreateAccountUCO)
         self.assertEqual(ucout.errmsg, ERRMSG_INVALID_EMAIL)
+
+    def test_email_already_exist(self):
+        ucin = CreateAccountUCI(
+            type=_vld_acctype,
+            name=_vld_name,
+            email=_vld_email,
+            password=_vld_password,
+        )
+        dba = Mock()
+        dba.email_exists.return_value = True
+
+        ph = Mock()
+
+        ucout = create_account_interactor(dba, ph, ucin)
+
+        self.assertIsInstance(ucout, CreateAccountUCO)
+        self.assertEqual(dba.email_exists.call_count, 1)
+        self.assertEqual(ucout.errmsg, ERRMSG_EMAIL_EXISTS)
 
 class TestCreateAccountController(TestCase):
     def test_success(self):

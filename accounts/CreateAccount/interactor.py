@@ -25,6 +25,7 @@ ERRMSG_INVALID_ACCTYPE = "Invalid account type"
 ERRMSG_INVALID_PASSWORD = "Invalid password"
 ERRMSG_INVALID_NAME = "Invalid name"
 ERRMSG_INVALID_EMAIL = "Invalid email"
+ERRMSG_EMAIL_EXISTS = "Email already used by another account"
 
 def _validate_ucin(ucin: CreateAccountUCI) -> CreateAccountUCO:
     if not validate_acctype(ucin.type):
@@ -44,6 +45,9 @@ def create_account_interactor(dba: DBAccountsInterface, ph: Callable[[str], str]
 
     if ucout:
         return ucout
+
+    if dba.email_exists(ucin.email):
+        return CreateAccountUCO(errmsg=ERRMSG_EMAIL_EXISTS)
 
     password_hashed = ph(ucin.password)
 
