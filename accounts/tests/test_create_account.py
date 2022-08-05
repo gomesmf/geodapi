@@ -6,6 +6,7 @@ from accounts.CreateAccount.controller import (
     create_account_controller
 )
 from accounts.CreateAccount.interactor import (
+    ERRMSG_CANNOT_CREATE_ACCOUNT,
     ERRMSG_EMAIL_EXISTS,
     ERRMSG_INVALID_ACCTYPE,
     ERRMSG_INVALID_EMAIL,
@@ -52,6 +53,27 @@ class TestCreateAccountInteractor(TestCase):
         self.assertEqual(dba.create.call_count, 1)
         self.assertEqual(dba.email_exists.call_count, 1)
         self.assertEqual(ph.call_count, 1)
+
+    def test_cannot_create(self):
+        ucin = CreateAccountUCI(
+            type=_vld_acctype,
+            name=_vld_name,
+            email=_vld_email,
+            password=_vld_password,
+        )
+        dba = Mock()
+        dba.email_exists.return_value = False
+        dba.create.return_value = False
+
+        ph = Mock()
+
+        ucout = create_account_interactor(dba, ph, ucin)
+
+        self.assertIsInstance(ucout, CreateAccountUCO)
+        self.assertEqual(dba.email_exists.call_count, 1)
+        self.assertEqual(dba.create.call_count, 1)
+        self.assertEqual(ph.call_count, 1)
+        self.assertEqual(ucout.errmsg, ERRMSG_CANNOT_CREATE_ACCOUNT)
 
     def test_invld_acctype(self):
         ucin = CreateAccountUCI(
