@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 
 from accounts.web import (
     AccountsService,
@@ -29,4 +30,10 @@ def get_accounts():
 @app.post("/accounts", response_model=CreateAccountResM)
 def create_account(reqm: CreateAccountReqM):
     resm = acs.create_account(dba, ph, reqm)
-    return resm
+
+    if resm.errmsg:
+        return JSONResponse(status_code=400, content={"message": resm.errmsg})
+
+    print(resm.dict(exclude={"errmsg"}))
+
+    return resm.dict(exclude={"errmsg"})
