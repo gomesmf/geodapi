@@ -3,9 +3,9 @@ from enum import Enum
 MIN_LEN_PASSWORD = 4
 
 class AccountType(Enum):
-    SELLER = "seller"
-    BUYER = "buyer"
-    DELIVERYGUY = "deliveryguy"
+    SELLER = "SELLER"
+    BUYER = "BUYER"
+    DELIVERYGUY = "DELIVERYGUY"
 
 class Account:
     def __init__(self, id: int = None, type: str = None, name: str = None, email: str = None, password_hashed: str = None) -> None:

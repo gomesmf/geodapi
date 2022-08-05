@@ -1,6 +1,6 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
-from accounts.entities import MIN_LEN_PASSWORD
+from accounts.entities import MIN_LEN_PASSWORD, AccountType
 from accounts.CreateAccount.controller import (
     CreateAccountReqM,
     create_account_controller
@@ -24,7 +24,7 @@ from accounts.CreateAccount.view import (
     create_account_view
 )
 
-_vld_acctype = "deliveryguy"
+_vld_acctype = AccountType.DELIVERYGUY.value
 _vld_name = "matheus"
 _vld_email = "matheus@email.com"
 _vld_password = "p"*MIN_LEN_PASSWORD
