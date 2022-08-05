@@ -26,6 +26,7 @@ ERRMSG_INVALID_PASSWORD = "Invalid password"
 ERRMSG_INVALID_NAME = "Invalid name"
 ERRMSG_INVALID_EMAIL = "Invalid email"
 ERRMSG_EMAIL_EXISTS = "Email already used by another account"
+ERRMSG_CANNOT_CREATE_ACCOUNT = "Account cannot be created in the database"
 
 def _validate_ucin(ucin: CreateAccountUCI) -> CreateAccountUCO:
     if not validate_acctype(ucin.type):
@@ -53,8 +54,9 @@ def create_account_interactor(dba: DBAccountsInterface, ph: Callable[[str], str]
 
     a = Account(type=ucin.type, name=ucin.name, email=ucin.email, password_hashed=password_hashed)
 
-    id = dba.create(a)
+    if not dba.create(a):
+        return CreateAccountUCO(errmsg=ERRMSG_CANNOT_CREATE_ACCOUNT)
 
-    ucout = CreateAccountUCO(id=id)
+    ucout = CreateAccountUCO(id=a.id)
 
     return ucout
