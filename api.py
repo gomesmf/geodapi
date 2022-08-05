@@ -3,7 +3,7 @@ from accounts.CreateAccount.controller import CreateAccountReqM, create_account_
 from accounts.CreateAccount.interactor import create_account_interactor
 from accounts.CreateAccount.presenter import create_account_presenter
 from accounts.CreateAccount.view import create_account_view
-from accounts.GetAccountTypes.controller import get_account_types_controller
+from accounts.GetAccountTypes.interactor import get_account_types_interactor
 from accounts.GetAccountTypes.presenter import get_account_types_presenter
 from accounts.GetAccountTypes.view import get_account_types_view
 
@@ -23,7 +23,7 @@ def get_accounts():
 
 @app.get("/accounts/new")
 def get_accounts():
-    ucout = get_account_types_controller()
+    ucout = get_account_types_interactor()
     vm = get_account_types_presenter(ucout)
     resm = get_account_types_view(vm)
     return resm
