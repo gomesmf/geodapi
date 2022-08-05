@@ -1,6 +1,6 @@
 from typing import Callable
 
-from accounts.data import DBAccountsInterface
+from .data import DBAccountsInterface
 from .service import AccountsServiceInterface
 
 from .CreateAccount.controller import CreateAccountReqM, create_account_controller
