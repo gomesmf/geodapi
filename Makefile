@@ -1,6 +1,6 @@
-test: export PYTHONPATH=..
+test: export PYTHONPATH=../..
 test:
-	cd tests && python3 -m unittest -v
+	cd accounts/tests && python3 -m unittest -v
 
 updatereqs:
 	python3 -m pip freeze > requirements.txt
