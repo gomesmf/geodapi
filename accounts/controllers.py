@@ -1,3 +1,4 @@
+from enum import Enum
 from pydantic import BaseModel
 from accounts.interactors import CreateAccountUCI
 

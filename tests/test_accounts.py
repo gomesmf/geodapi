@@ -4,7 +4,9 @@ from accounts.controllers import (
     CreateAccountReqM,
     create_account_controller
 )
+from accounts.entities import Account
 from accounts.interactors import (
+    ERRMSG_INVALID_ACCTYPE,
     ERRMSG_INVALID_EMAIL,
     ERRMSG_INVALID_NAME,
     ERRMSG_INVALID_PASSWORD,
@@ -22,20 +24,36 @@ from accounts.views import (
     create_account_view
 )
 
-_valid_name = "matheus"
-_valid_email = "matheus@email.com"
-_valid_password = "p"*MIN_LEN_PASSWORD
-_invalid_name = ""
-_invalid_email = "matheus"
-_invalid_password = "1"*(MIN_LEN_PASSWORD-1)
+_vld_acctype = "deliveryguy"
+_vld_name = "matheus"
+_vld_email = "matheus@email.com"
+_vld_password = "p"*MIN_LEN_PASSWORD
+_invld_acctype = "wrongtype"
+_invld_name = ""
+_invld_email = "matheus"
+_invld_password = "1"*(MIN_LEN_PASSWORD-1)
+
+class TestAccountEntity(TestCase):
+    def test_success(self):
+        type = _vld_acctype
+        name = _vld_name
+        email = _vld_email
+        password_hashed = _vld_password
+
+        a = Account(type=type, name=name, email=email, password_hashed=password_hashed)
+
+        self.assertEqual(a.type, type)
+        self.assertEqual(a.name, name)
+        self.assertEqual(a.email, email)
+        self.assertEqual(a.password_hashed, password_hashed)
 
 class TestCreateAccountInteractor(TestCase):
     def test_success(self):
         ucin = CreateAccountUCI(
-            type="deliveryguy",
-            name="matheus",
-            email="matheus@email.com",
-            password="secret",
+            type=_vld_acctype,
+            name=_vld_name,
+            email=_vld_email,
+            password=_vld_password,
         )
         dba = Mock()
         ph = Mock()
@@ -46,12 +64,27 @@ class TestCreateAccountInteractor(TestCase):
         self.assertEqual(dba.create.call_count, 1)
         self.assertEqual(ph.call_count, 1)
 
-    def test_invalid_password(self):
+    def test_invld_acctype(self):
         ucin = CreateAccountUCI(
-            type="deliveryguy",
-            name=_valid_name,
-            email=_valid_email,
-            password=_invalid_password
+            type=_invld_acctype,
+            name=_vld_name,
+            email=_vld_email,
+            password=_vld_password
+        )
+        dba = Mock()
+        ph = Mock()
+
+        ucout = create_account_interactor(dba, ph, ucin)
+
+        self.assertIsInstance(ucout, CreateAccountUCO)
+        self.assertEqual(ucout.errmsg, ERRMSG_INVALID_ACCTYPE)
+
+    def test_invld_password(self):
+        ucin = CreateAccountUCI(
+            type=_vld_acctype,
+            name=_vld_name,
+            email=_vld_email,
+            password=_invld_password
         )
         dba = Mock()
         ph = Mock()
@@ -61,12 +94,12 @@ class TestCreateAccountInteractor(TestCase):
         self.assertIsInstance(ucout, CreateAccountUCO)
         self.assertEqual(ucout.errmsg, ERRMSG_INVALID_PASSWORD)
 
-    def test_invalid_name(self):
+    def test_invld_name(self):
         ucin = CreateAccountUCI(
-            type="deliveryguy",
-            name=_invalid_name,
-            email=_valid_email,
-            password=_valid_password
+            type=_vld_acctype,
+            name=_invld_name,
+            email=_vld_email,
+            password=_vld_password
         )
         dba = Mock()
         ph = Mock()
@@ -75,12 +108,12 @@ class TestCreateAccountInteractor(TestCase):
         self.assertIsInstance(ucout, CreateAccountUCO)
         self.assertEqual(ucout.errmsg, ERRMSG_INVALID_NAME)
 
-    def test_invalid_email(self):
+    def test_invld_email(self):
         ucin = CreateAccountUCI(
-            type="deliveryguy",
-            name=_valid_name,
-            email=_invalid_email,
-            password=_valid_password
+            type=_vld_acctype,
+            name=_vld_name,
+            email=_invld_email,
+            password=_vld_password
         )
         dba = Mock()
         ph = Mock()
@@ -92,10 +125,10 @@ class TestCreateAccountInteractor(TestCase):
 class TestCreateAccountController(TestCase):
     def test_success(self):
         reqm = CreateAccountReqM(
-            type="deliveryguy",
-            name=_valid_name,
-            email=_valid_email,
-            password=_valid_password
+            type=_vld_acctype,
+            name=_vld_name,
+            email=_vld_email,
+            password=_vld_password
         )
 
         ucin = create_account_controller(reqm)

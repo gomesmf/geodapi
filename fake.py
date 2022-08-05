@@ -1,4 +1,5 @@
 from typing import Dict
+from accounts.entities import Account
 
 from accounts.interactors import DBAccountsInterface
 
@@ -9,15 +10,16 @@ class InMemoryDBAccounts(DBAccountsInterface):
 
         self.data = data
 
-    def create(self, atype: str, name: str, email: str, password_hashed: str):
+    def create(self, a: Account):
         self.data["last_account_id"] += 1
         aid = self.data["last_account_id"]
         self.data["accounts"][aid] = {
-            "type": atype,
-            "name": name,
-            "email": email,
-            "password_hashed": password_hashed
+            "type": a.type,
+            "name": a.name,
+            "email": a.email,
+            "password_hashed": a.password_hashed
         }
+        a.id = aid
         return aid
 
 def get_dba():
