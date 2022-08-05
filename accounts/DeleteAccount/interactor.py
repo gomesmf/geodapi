@@ -17,7 +17,7 @@ def delete_account_interactor(dba: DBAccountsInterface, ucin: DeleteAccountUCI):
     if not dba.account_id_exists(ucin.account_id):
         return DeleteAccountUCO(account_id=ucin.account_id, errmsg=ERRMSG_ACCOUNT_NOT_FOUND)
 
-    if not dba.delete_account(ucin.account_id):
+    if not dba.delete(ucin.account_id):
         return DeleteAccountUCO(account_id=ucin.account_id, errmsg=ERRMSG_CANNOT_DELETE_ACCOUNT)
 
     return DeleteAccountUCO(account_id=ucin.account_id)
