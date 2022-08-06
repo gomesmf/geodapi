@@ -13,6 +13,8 @@ from accounts.UpdateAccount.interactor import (
     UpdateAccountUCO,
     update_account_interactor
 )
+from accounts.UpdateAccount.presenter import UpdateAccountVM, update_account_presenter
+from accounts.UpdateAccount.view import UpdateAccountResM, update_account_view
 
 from accounts.tests.utils import INVLD_NAME, INVLD_PASSWORD, VLD_EMAIL, VLD_NAME, VLD_PASSWORD
 
@@ -161,11 +163,19 @@ class TestInteractor(TestCase):
 
 class TestPresenter(TestCase):
     def test_success(self):
-        pass
+        ucout = UpdateAccountUCO()
+
+        vm = update_account_presenter(ucout)
+
+        self.assertIsInstance(vm, UpdateAccountVM)
 
 class TestView(TestCase):
     def test_success(self):
-        pass
+        vm = UpdateAccountVM()
+
+        resm = update_account_view(vm)
+
+        self.assertIsInstance(resm, UpdateAccountResM)
 
 if __name__ == "__main__":
     main()

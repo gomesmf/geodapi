@@ -5,5 +5,5 @@ class CreateAccountVM:
         self.id = id
         self.errmsg = errmsg
 
-def create_account_presenter(ucout: CreateAccountUCO):
+def create_account_presenter(ucout: CreateAccountUCO) -> CreateAccountVM:
     return CreateAccountVM(id=ucout.id, errmsg=ucout.errmsg)
