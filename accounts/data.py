@@ -5,6 +5,10 @@ from accounts.entities import Account
 
 class DBAccountsInterface(ABC):
     @abstractmethod
+    def account_id_exists(self, account_id: int) -> bool:
+        pass
+
+    @abstractmethod
     def create(self, a: Account) -> bool:
         pass
 

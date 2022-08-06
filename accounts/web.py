@@ -17,9 +17,13 @@ from .GetAccountTypes.presenter import get_account_types_presenter
 from .GetAccountTypes.view import GetAccountTypesResM, get_account_types_view
 
 class AccountsService(AccountsServiceInterface):
-    def create_account(self, dba: DBAccountsInterface, ph: Callable[[str], str], reqm: CreateAccountReqM) -> CreateAccountResM:
+    def __init__(self, dba: DBAccountsInterface, ph: Callable[[str], str]) -> None:
+        self.dba = dba
+        self.ph = ph
+
+    def create_account(self, reqm: CreateAccountReqM) -> CreateAccountResM:
         ucin = create_account_controller(reqm)
-        ucout = create_account_interactor(dba, ph, ucin)
+        ucout = create_account_interactor(self.dba, self.ph, ucin)
         vm = create_account_presenter(ucout)
         resm = create_account_view(vm)
         return resm
@@ -30,9 +34,9 @@ class AccountsService(AccountsServiceInterface):
         resm = get_account_types_view(vm)
         return resm
 
-    def delete_account(self, dba: DBAccountsInterface, account_id: int) -> DeleteAccountResM:
+    def delete_account(self, account_id: int) -> DeleteAccountResM:
         ucin = delete_account_controller(account_id)
-        ucout = delete_account_interactor(dba, ucin)
+        ucout = delete_account_interactor(self.dba, ucin)
         vm = delete_account_presenter(ucout)
         resm = delete_account_view(vm)
         return resm

@@ -15,7 +15,9 @@ _vld_password = "p"*MIN_LEN_PASSWORD
 
 class TestCreateAccount(TestCase):
     def test_success(self):
-        acs = AccountsService()
+        dba = Mock()
+        ph = Mock()
+        acs = AccountsService(dba, ph)
 
         reqm = CreateAccountReqM(
             type=_vld_acctype,
@@ -23,13 +25,11 @@ class TestCreateAccount(TestCase):
             email=_vld_email,
             password=_vld_password
         )
-        dba = Mock()
+
         dba.email_exists.return_value = False
         dba.create.return_value = True
 
-        ph = Mock()
-
-        resm = acs.create_account(dba, ph, reqm)
+        resm = acs.create_account(reqm)
 
         self.assertIsInstance(resm, CreateAccountResM)
         self.assertEqual(dba.email_exists.call_count, 1)
@@ -38,17 +38,20 @@ class TestCreateAccount(TestCase):
 
 class TestGetAccountTypes(TestCase):
     def test_success(self):
-        acs = AccountsService()
+        dba = Mock()
+        ph = Mock()
+        acs = AccountsService(dba, ph)
         resm = acs.get_account_types()
         self.assertIsInstance(resm, GetAccountTypesResM)
 
 class TestDeleteAccount(TestCase):
     def test_success(self):
-        acs = AccountsService()
-        account_id = 1
         dba = Mock()
+        ph = Mock()
+        acs = AccountsService(dba, ph)
+        account_id = 1
 
-        resm = acs.delete_account(dba, account_id=account_id)
+        resm = acs.delete_account(account_id=account_id)
 
         self.assertIsInstance(resm, DeleteAccountResM)
         self.assertEqual(dba.account_id_exists.call_count, 1)
