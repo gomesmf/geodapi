@@ -1,0 +1,47 @@
+# test_{usecase}.py
+
+from unittest import main, TestCase
+from unittest.mock import Mock
+
+class TestController(TestCase):
+    def test_success(self):
+        pass
+
+class TestInteractor(TestCase):
+    def test_success(self):
+        pass
+
+class TestPresenter(TestCase):
+    def test_success(self):
+        pass
+
+class TestView(TestCase):
+    def test_success(self):
+        pass
+
+if __name__ == "__main__":
+    main()
+
+# controller.py
+
+from pydantic import BaseModel
+
+from accounts.{UseCase}.interactor import {UseCase}UCI
+
+
+class {UseCase}ReqM(BaseModel):
+    account_id: int
+    email: str = None
+    name: str = None
+    password: str = None
+    password_again: str = None
+
+def update_account_controller(reqm: {UseCase}ReqM) -> {UseCase}UCI:
+    ucin = {UseCase}UCI(
+        account_id=reqm.account_id,
+        email=reqm.email,
+        name=reqm.name,
+        password=reqm.password,
+        password_again=reqm.password_again,
+    )
+    return ucin
