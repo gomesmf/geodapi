@@ -11,7 +11,7 @@ from accounts.web import (
     GetAccountTypesResM
 )
 
-from accounts.mocks import fake_password_hash, get_inmemdba
+from accounts.helpers import fake_password_hash, get_inmemdba
 
 dba = get_inmemdba()
 
