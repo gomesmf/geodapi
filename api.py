@@ -10,11 +10,10 @@ from accounts.web import (
     CreateAccountResM,
     GetAccountTypesResM
 )
-from accounts.inmemdb import get_dba
 
-from fake import fake_password_hash
+from accounts.mocks import fake_password_hash, get_inmemdba
 
-dba = get_dba()
+dba = get_inmemdba()
 
 ph = fake_password_hash
 
