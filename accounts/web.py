@@ -1,11 +1,17 @@
 from typing import Callable
-from accounts.DeleteAccount.controller import delete_account_controller
-from accounts.DeleteAccount.interactor import delete_account_interactor
-from accounts.DeleteAccount.presenter import delete_account_presenter
-from accounts.DeleteAccount.view import DeleteAccountResM, delete_account_view
 
 from .data import DBAccountsInterface
 from .service import AccountsServiceInterface
+
+from .DeleteAccount.controller import delete_account_controller
+from .DeleteAccount.interactor import delete_account_interactor
+from .DeleteAccount.presenter import delete_account_presenter
+from .DeleteAccount.view import DeleteAccountResM, delete_account_view
+
+from .UpdateAccount.controller import UpdateAccountReqM, update_account_controller
+from .UpdateAccount.interactor import update_account_interactor
+from .UpdateAccount.presenter import update_account_presenter
+from .UpdateAccount.view import UpdateAccountResM, update_account_view
 
 from .CreateAccount.controller import CreateAccountReqM, create_account_controller
 from .CreateAccount.interactor import create_account_interactor
@@ -39,4 +45,11 @@ class AccountsService(AccountsServiceInterface):
         ucout = delete_account_interactor(self.dba, ucin)
         vm = delete_account_presenter(ucout)
         resm = delete_account_view(vm)
+        return resm
+
+    def update_account(self, reqm: UpdateAccountReqM) -> UpdateAccountResM:
+        ucin = update_account_controller(reqm)
+        ucout = update_account_interactor(self.dba, self.ph, ucin)
+        vm = update_account_presenter(ucout)
+        resm = update_account_view(vm)
         return resm

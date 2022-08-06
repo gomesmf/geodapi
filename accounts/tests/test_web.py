@@ -4,6 +4,8 @@ from accounts.CreateAccount.controller import CreateAccountReqM
 from accounts.CreateAccount.view import CreateAccountResM
 from accounts.DeleteAccount.view import DeleteAccountResM
 from accounts.GetAccountTypes.view import GetAccountTypesResM
+from accounts.UpdateAccount.controller import UpdateAccountReqM
+from accounts.UpdateAccount.view import UpdateAccountResM
 from accounts.entities import MIN_LEN_PASSWORD, AccountType
 
 from accounts.web import AccountsService
@@ -56,6 +58,31 @@ class TestDeleteAccount(TestCase):
         self.assertIsInstance(resm, DeleteAccountResM)
         self.assertEqual(dba.account_id_exists.call_count, 1)
         self.assertEqual(dba.delete.call_count, 1)
+
+class TestUpdateAccount(TestCase):
+    def test_success(self):
+        dba = Mock()
+        ph = Mock()
+        acs = AccountsService(dba, ph)
+
+        dba.account_id_exists.return_value = True
+        dba.email_exists.return_value = False
+        dba.update.return_value = True
+
+        reqm = UpdateAccountReqM(
+            account_id=1,
+            email=_vld_email,
+            name=_vld_name,
+            password=_vld_password,
+            password_again=_vld_password
+        )
+
+        resm = acs.update_account(reqm)
+
+        self.assertIsInstance(resm, UpdateAccountResM)
+        self.assertEqual(dba.account_id_exists.call_count, 1)
+        self.assertEqual(dba.email_exists.call_count, 1)
+        self.assertEqual(dba.update.call_count, 1)
 
 if __name__ == "__main__":
     main()

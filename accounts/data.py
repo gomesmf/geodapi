@@ -19,3 +19,7 @@ class DBAccountsInterface(ABC):
     @abstractmethod
     def delete(self, account_id: int) -> bool:
         pass
+
+    @abstractmethod
+    def update(self, account_id: int, email: str = None, name: str = None, password_hashed: str = None) -> bool:
+        pass

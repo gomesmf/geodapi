@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
 
+from accounts.UpdateAccount.controller import UpdateAccountReqM
+from accounts.UpdateAccount.view import UpdateAccountResM
+
 from .CreateAccount.controller import CreateAccountReqM
 from .CreateAccount.view import CreateAccountResM
 from .DeleteAccount.view import DeleteAccountResM
@@ -16,4 +19,8 @@ class AccountsServiceInterface(ABC):
 
     @abstractmethod
     def delete_account(self, account_id: int) -> DeleteAccountResM:
+        pass
+
+    @abstractmethod
+    def update_account(self, reqm: UpdateAccountReqM) -> UpdateAccountResM:
         pass

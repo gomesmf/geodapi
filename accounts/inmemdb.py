@@ -30,5 +30,19 @@ class InMemoryDBAccounts(DBAccountsInterface):
         del self.data["accounts"][account_id]
         return True
 
+    def update(self, account_id: int, email: str = None, name: str = None, password_hashed: str = None) -> bool:
+        aobj = self.data["accounts"][account_id]
+
+        if email != None:
+            aobj.email = email
+
+        if name != None:
+            aobj.name = name
+
+        if password_hashed != None:
+            aobj.password_hashed = password_hashed
+
+        return True
+
 def get_dba():
     return InMemoryDBAccounts()
