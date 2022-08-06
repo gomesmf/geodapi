@@ -69,15 +69,16 @@ class TestUpdateAccount(TestCase):
         dba.email_exists.return_value = False
         dba.update.return_value = True
 
+        account_id = 1
+
         reqm = UpdateAccountReqM(
-            account_id=1,
             email=_vld_email,
             name=_vld_name,
             password=_vld_password,
             password_again=_vld_password
         )
 
-        resm = acs.update_account(reqm)
+        resm = acs.update_account(account_id, reqm)
 
         self.assertIsInstance(resm, UpdateAccountResM)
         self.assertEqual(dba.account_id_exists.call_count, 1)

@@ -4,15 +4,14 @@ from accounts.UpdateAccount.interactor import UpdateAccountUCI
 
 
 class UpdateAccountReqM(BaseModel):
-    account_id: int
     email: str = None
     name: str = None
     password: str = None
     password_again: str = None
 
-def update_account_controller(reqm: UpdateAccountReqM) -> UpdateAccountUCI:
+def update_account_controller(account_id: int, reqm: UpdateAccountReqM) -> UpdateAccountUCI:
     ucin = UpdateAccountUCI(
-        account_id=reqm.account_id,
+        account_id=account_id,
         email=reqm.email,
         name=reqm.name,
         password=reqm.password,

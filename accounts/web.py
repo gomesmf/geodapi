@@ -47,8 +47,8 @@ class AccountsService(AccountsServiceInterface):
         resm = delete_account_view(vm)
         return resm
 
-    def update_account(self, reqm: UpdateAccountReqM) -> UpdateAccountResM:
-        ucin = update_account_controller(reqm)
+    def update_account(self, account_id: int, reqm: UpdateAccountReqM) -> UpdateAccountResM:
+        ucin = update_account_controller(account_id, reqm)
         ucout = update_account_interactor(self.dba, self.ph, ucin)
         vm = update_account_presenter(ucout)
         resm = update_account_view(vm)

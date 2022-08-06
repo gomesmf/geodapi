@@ -1,11 +1,14 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
-
-from accounts.UpdateAccount.controller import UpdateAccountReqM, update_account_controller
+from accounts.UpdateAccount.controller import (
+    UpdateAccountReqM,
+    update_account_controller
+)
 from accounts.UpdateAccount.interactor import (
     ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_CANNOT_UPDATE_ACCOUNT,
     ERRMSG_EMAIL_ALREADY_EXISTS,
+    ERRMSG_INVALID_EMAIL,
     ERRMSG_INVALID_NAME,
     ERRMSG_INVALID_PASSWD,
     ERRMSG_TWO_PASSWD_MUST_MATCH,
@@ -13,14 +16,25 @@ from accounts.UpdateAccount.interactor import (
     UpdateAccountUCO,
     update_account_interactor
 )
-from accounts.UpdateAccount.presenter import UpdateAccountVM, update_account_presenter
-from accounts.UpdateAccount.view import UpdateAccountResM, update_account_view
-
-from accounts.tests.utils import INVLD_NAME, INVLD_PASSWORD, VLD_EMAIL, VLD_NAME, VLD_PASSWORD
+from accounts.UpdateAccount.presenter import (
+    UpdateAccountVM,
+    update_account_presenter
+)
+from accounts.UpdateAccount.view import (
+    UpdateAccountResM,
+    update_account_view
+)
+from accounts.tests.utils import (
+    INVLD_EMAIL,
+    INVLD_NAME,
+    INVLD_PASSWORD,
+    VLD_EMAIL,
+    VLD_NAME,
+    VLD_PASSWORD
+)
 
 def _update_account_reqm():
     return UpdateAccountReqM(
-        account_id=1,
         email=VLD_EMAIL,
         name=VLD_NAME,
         password=VLD_PASSWORD,
@@ -40,10 +54,11 @@ class TestController(TestCase):
     def test_success(self):
         reqm = _update_account_reqm()
 
-        ucin = update_account_controller(reqm)
+        account_id = 1
+        ucin = update_account_controller(account_id, reqm)
 
         self.assertIsInstance(ucin, UpdateAccountUCI)
-        self.assertEqual(ucin.account_id, reqm.account_id)
+        self.assertEqual(ucin.account_id, account_id)
         self.assertEqual(ucin.email, reqm.email)
         self.assertEqual(ucin.name, reqm.name)
         self.assertEqual(ucin.password, reqm.password)
@@ -93,6 +108,22 @@ class TestInteractor(TestCase):
         self.assertEqual(dba.account_id_exists.call_count, 1)
         self.assertEqual(dba.email_exists.call_count, 1)
         self.assertEqual(ucout.errmsg, ERRMSG_EMAIL_ALREADY_EXISTS)
+
+    def test_invalid_email(self):
+        ucin = _update_account_ucin()
+        ucin.email = INVLD_EMAIL
+        dba = Mock()
+        dba.account_id_exists.return_value = True
+        dba.email_exists.return_value = False
+
+        ph = Mock()
+
+        ucout = update_account_interactor(dba, ph, ucin)
+
+        self.assertIsInstance(ucout, UpdateAccountUCO)
+        self.assertEqual(dba.account_id_exists.call_count, 1)
+        self.assertEqual(dba.email_exists.call_count, 1)
+        self.assertEqual(ucout.errmsg, ERRMSG_INVALID_EMAIL)
 
     def test_invalid_name(self):
         ucin = _update_account_ucin()

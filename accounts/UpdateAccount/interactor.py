@@ -1,6 +1,6 @@
 from typing import Callable
 from accounts.data import DBAccountsInterface
-from accounts.entities import validate_name, validate_password
+from accounts.entities import validate_email, validate_name, validate_password
 
 class UpdateAccountUCI:
     def __init__(self, account_id: int, email: str = None, name: str = None, password: str = None, password_again: str = None) -> None:
@@ -19,14 +19,19 @@ ERRMSG_EMAIL_ALREADY_EXISTS = "Email already in use"
 ERRMSG_TWO_PASSWD_MUST_MATCH = "Passwords must be equal"
 ERRMSG_INVALID_PASSWD = "Invalid password"
 ERRMSG_INVALID_NAME = "Invalid name"
+ERRMSG_INVALID_EMAIL = "Invalid email"
 ERRMSG_CANNOT_UPDATE_ACCOUNT = "Cannot update account in database"
 
 def update_account_interactor(dba: DBAccountsInterface, ph: Callable[[str], str], ucin: UpdateAccountUCI) -> UpdateAccountUCO:
     if not dba.account_id_exists(ucin.account_id):
         return UpdateAccountUCO(errmsg=ERRMSG_ACCOUNT_NOT_FOUND)
 
-    if ucin.email != None and dba.email_exists(ucin.email):
-        return UpdateAccountUCO(errmsg=ERRMSG_EMAIL_ALREADY_EXISTS)
+    if ucin.email != None:
+        if dba.email_exists(ucin.email):
+            return UpdateAccountUCO(errmsg=ERRMSG_EMAIL_ALREADY_EXISTS)
+
+        if not validate_email(ucin.email):
+            return UpdateAccountUCO(errmsg=ERRMSG_INVALID_EMAIL)
 
     if ucin.name != None and not validate_name(ucin.name):
         return UpdateAccountUCO(errmsg=ERRMSG_INVALID_NAME)

@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from accounts.DeleteAccount.view import DeleteAccountResM
+from accounts.UpdateAccount.controller import UpdateAccountReqM
+from accounts.UpdateAccount.view import UpdateAccountResM
 
 from accounts.web import (
     AccountsService,
@@ -43,5 +45,14 @@ def delete_account(account_id: int):
 
     if resm.errmsg:
         return JSONResponse(status_code=404, content=resm.dict())
+
+    return resm
+
+@app.put("/accounts/{account_id}", response_model=UpdateAccountResM)
+def update_account(account_id: int, reqm: UpdateAccountReqM):
+    resm = acs.update_account(account_id, reqm)
+
+    if resm.errmsg:
+        return JSONResponse(status_code=400, content=resm.dict())
 
     return resm
