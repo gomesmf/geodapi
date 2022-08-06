@@ -42,6 +42,6 @@ def delete_account(account_id: int):
     resm = acs.delete_account(account_id)
 
     if resm.errmsg:
-        return JSONResponse(status_code=400, content=resm.dict())
+        return JSONResponse(status_code=404, content=resm.dict())
 
     return resm
