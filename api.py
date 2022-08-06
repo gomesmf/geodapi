@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from accounts.DeleteAccount.view import DeleteAccountResM
 
 from accounts.web import (
     AccountsService,
@@ -17,7 +18,7 @@ ph = fake_password_hash
 
 app = FastAPI(description="Delivery Guy API")
 
-acs = AccountsService()
+acs = AccountsService(dba, ph)
 
 @app.get("/accounts")
 def get_accounts():
@@ -29,7 +30,16 @@ def get_accounts():
 
 @app.post("/accounts", response_model=CreateAccountResM)
 def create_account(reqm: CreateAccountReqM):
-    resm = acs.create_account(dba, ph, reqm)
+    resm = acs.create_account(reqm)
+
+    if resm.errmsg:
+        return JSONResponse(status_code=400, content=resm.dict())
+
+    return resm
+
+@app.delete("/accounts/{account_id}", response_model=DeleteAccountResM)
+def delete_account(account_id: int):
+    resm = acs.delete_account(account_id)
 
     if resm.errmsg:
         return JSONResponse(status_code=400, content=resm.dict())
