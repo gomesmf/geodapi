@@ -33,3 +33,6 @@ class InMemoryDBDistances(DBDistancesInterface):
             }
         )
         return True
+
+def get_inmemdbd():
+    return InMemoryDBDistances()

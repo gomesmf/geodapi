@@ -12,20 +12,25 @@ from accounts.web import (
 )
 
 from accounts.helpers import fake_password_hash, get_inmemdba
-from deliveries.ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
-from deliveries.ComputeDistance.interactor import compute_distance_interactor
-from deliveries.ComputeDistance.presenter import compute_distance_presenter
-from deliveries.ComputeDistance.view import compute_distance_view
-from deliveries.helpers import FakeDistanceService, FakeSearchService, InMemoryDBDistances
+from deliveries.ComputeDistance.controller import ComputeDistanceReqM
+from deliveries.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
+from deliveries.web import DelieveriesService
 
+app = FastAPI(description="Delivery Guy API")
 
 dba = get_inmemdba()
 
 ph = fake_password_hash
 
-app = FastAPI(description="Delivery Guy API")
-
 acs = AccountsService(dba, ph)
+
+dbd = get_inmemdbd()
+
+ss = FakeSearchService()
+
+ds = FakeDistanceService()
+
+delis = DelieveriesService(acs, ss, ds, dbd)
 
 @app.get("/accounts")
 def get_accounts():
@@ -62,16 +67,13 @@ def update_account(account_id: int, reqm: UpdateAccountReqM):
 
     return resm
 
-dbd = InMemoryDBDistances()
-ss = FakeSearchService()
-ds = FakeDistanceService()
-
 @app.post("/distances/compute")
 def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
-    ucin = compute_distance_controller(account_id, reqm)
-    ucout = compute_distance_interactor(acs, ss, ds, dbd, ucin)
-    vm = compute_distance_presenter(ucout)
-    resm = compute_distance_view(vm)
+    resm = delis.compute_distance(account_id, reqm)
+
+    if resm.errmsg:
+        return JSONResponse(status_code=400, content=resm.dict())
+
     return resm
 
 @app.get("/distances")

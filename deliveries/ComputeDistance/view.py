@@ -12,10 +12,11 @@ class DistanceResultM(BaseModel):
 class ComputeDistanceResM(BaseModel):
     distances: List[DistanceResultM] = None
     errmsg: str = None
-    detail: str = None
+    # detail: str = None
 
 def compute_distance_view(vm: ComputeDistanceVM) -> ComputeDistanceResM:
-    resm = ComputeDistanceResM(errmsg=vm.errmsg, detail=vm.detail)
+    resm = ComputeDistanceResM(errmsg=vm.errmsg)
+    # resm.detail = vm.detail
 
     if vm.result != None:
         drmlist = []
