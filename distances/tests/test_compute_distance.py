@@ -1,5 +1,6 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
+from distances.ComputeDistance.controller import AddressM, ComputeDistanceReqM, compute_distance_controller
 from distances.ComputeDistance.interactor import (
     ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_COULDNT_COMPUTE_DISTANCE,
@@ -13,9 +14,40 @@ from distances.ComputeDistance.interactor import (
     SearchResult,
     compute_distance_interactor
 )
+from distances.entities import Address
 
 class TestController(TestCase):
-    pass
+    def test_success(self):
+        account_id = 1
+        reqm = ComputeDistanceReqM(
+            origin=AddressM(
+                street="street",
+                house_number=123,
+                city="city",
+                country="country"),
+            destination=AddressM(
+                street="street",
+                house_number=123,
+                city="city",
+                country="country")
+        )
+
+        ucin = compute_distance_controller(
+            account_id=account_id,
+            reqm=reqm)
+
+        self.assertIsInstance(ucin, ComputeDistanceUCI)
+        self.assertEqual(ucin.account_id, account_id)
+        self.assertIsInstance(ucin.orig, Address)
+        self.assertEqual(ucin.orig.street, reqm.origin.street)
+        self.assertEqual(ucin.orig.house_number, reqm.origin.house_number)
+        self.assertEqual(ucin.orig.city, reqm.origin.city)
+        self.assertEqual(ucin.orig.country, reqm.origin.country)
+        self.assertIsInstance(ucin.dest, Address)
+        self.assertEqual(ucin.dest.street, reqm.destination.street)
+        self.assertEqual(ucin.dest.house_number, reqm.destination.house_number)
+        self.assertEqual(ucin.dest.city, reqm.destination.city)
+        self.assertEqual(ucin.dest.country, reqm.destination.country)
 
 class TestInteractor(TestCase):
     def test_success(self):
