@@ -4,3 +4,8 @@ class Address:
         self.house_number = house_number
         self.city = city
         self.country = country
+
+class Distance:
+    def __init__(self, value: float, unit: str) -> None:
+        self.value = value
+        self.unit = unit
