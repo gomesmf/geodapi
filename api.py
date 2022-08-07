@@ -12,6 +12,12 @@ from accounts.web import (
 )
 
 from accounts.helpers import fake_password_hash, get_inmemdba
+from distances.ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
+from distances.ComputeDistance.interactor import compute_distance_interactor
+from distances.ComputeDistance.presenter import compute_distance_presenter
+from distances.ComputeDistance.view import compute_distance_view
+from distances.helpers import FakeDistanceService, FakeSearchService, InMemoryDBDistances
+
 
 dba = get_inmemdba()
 
@@ -55,3 +61,19 @@ def update_account(account_id: int, reqm: UpdateAccountReqM):
         return JSONResponse(status_code=400, content=resm.dict())
 
     return resm
+
+dbd = InMemoryDBDistances()
+ss = FakeSearchService()
+ds = FakeDistanceService()
+
+@app.post("/distances/compute")
+def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
+    ucin = compute_distance_controller(account_id, reqm)
+    ucout = compute_distance_interactor(acs, ss, ds, dbd, ucin)
+    vm = compute_distance_presenter(ucout)
+    resm = compute_distance_view(vm)
+    return resm
+
+@app.get("/distances")
+def get_queries():
+    return dbd.data

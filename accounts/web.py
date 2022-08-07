@@ -53,3 +53,6 @@ class AccountsService(AccountsServiceInterface):
         vm = update_account_presenter(ucout)
         resm = update_account_view(vm)
         return resm
+
+    def account_id_exists(self, account_id: int) -> bool:
+        return True
