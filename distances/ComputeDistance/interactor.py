@@ -48,6 +48,9 @@ def compute_distance_interactor(
     if origlat == None or origlon == None:
         return ComputeDistanceUCO(errmsg=ERRMSG_ORIGIN_COORDINATES_NOT_FOUND)
 
+    ucin.origin.latitude = origlat
+    ucin.origin.longitude = origlon
+
     destsres = ss.search(ucin.destination)
     if destsres.errmsg:
         return ComputeDistanceUCO(errmsg=ERRMSG_DEST_NOT_FOUND, detail=destsres.errmsg)
@@ -56,11 +59,14 @@ def compute_distance_interactor(
     if destlat == None or destlon == None:
         return ComputeDistanceUCO(errmsg=ERRMSG_DEST_COORDINATES_NOT_FOUND)
 
+    ucin.destination.latitude = destlat
+    ucin.destination.longitude = destlon
+
     dsres = ds.compute(origlat, origlon, destlat, destlon)
     if not dsres:
         return ComputeDistanceUCO(errmsg=ERRMSG_COULDNT_COMPUTE_DISTANCE)
 
-    if not dbd.add_distance(ucin.account_id, ucin.origin, origsres, ucin.destination, destsres):
+    if not dbd.add_distance(ucin.account_id, ucin.origin, origsres, ucin.destination, destsres, dsres):
         return ComputeDistanceUCO(errmsg=ERRMSG_COULDNT_SAVE_RESULT)
 
-    return ComputeDistanceUCO(result=dsres)
+    return ComputeDistanceUCO(origin=ucin.origin, destination=ucin.destination, result=dsres)
