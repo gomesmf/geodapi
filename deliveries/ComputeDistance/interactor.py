@@ -1,8 +1,8 @@
 from typing import List, Tuple
 from accounts.service import AccountsServiceInterface
-from distances.entities import Address, Distance
-from distances.data import DBDistancesInterface
-from distances.external import SearchResult, SearchServiceInterface, DistanceServiceInterface
+from deliveries.entities import Address, Distance
+from deliveries.data import DBDistancesInterface
+from deliveries.external import SearchResult, SearchServiceInterface, DistanceServiceInterface
 
 class ComputeDistanceUCI:
     def __init__(self, account_id: int, origin: Address, destination: Address) -> None:

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from distances.external import SearchResult
+from deliveries.external import SearchResult
 from .entities import Address, Distance
 
 class DBDistancesInterface(ABC):

@@ -1,5 +1,5 @@
 from typing import Dict, List
-from distances.entities import Address, Distance
+from deliveries.entities import Address, Distance
 
 from .interactor import ComputeDistanceUCO
 

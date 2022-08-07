@@ -12,11 +12,11 @@ from accounts.web import (
 )
 
 from accounts.helpers import fake_password_hash, get_inmemdba
-from distances.ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
-from distances.ComputeDistance.interactor import compute_distance_interactor
-from distances.ComputeDistance.presenter import compute_distance_presenter
-from distances.ComputeDistance.view import compute_distance_view
-from distances.helpers import FakeDistanceService, FakeSearchService, InMemoryDBDistances
+from deliveries.ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
+from deliveries.ComputeDistance.interactor import compute_distance_interactor
+from deliveries.ComputeDistance.presenter import compute_distance_presenter
+from deliveries.ComputeDistance.view import compute_distance_view
+from deliveries.helpers import FakeDistanceService, FakeSearchService, InMemoryDBDistances
 
 
 dba = get_inmemdba()

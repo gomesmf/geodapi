@@ -1,11 +1,11 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
-from distances.ComputeDistance.controller import (
+from deliveries.ComputeDistance.controller import (
     AddressM,
     ComputeDistanceReqM,
     compute_distance_controller
 )
-from distances.ComputeDistance.interactor import (
+from deliveries.ComputeDistance.interactor import (
     ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_COULDNT_COMPUTE_DISTANCE,
     ERRMSG_COULDNT_SAVE_RESULT,
@@ -18,13 +18,13 @@ from distances.ComputeDistance.interactor import (
     SearchResult,
     compute_distance_interactor
 )
-from distances.ComputeDistance.presenter import (
+from deliveries.ComputeDistance.presenter import (
     ComputeDistanceVM,
     compute_distance_presenter,
     dist_between_text
 )
-from distances.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
-from distances.entities import Address, Distance
+from deliveries.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
+from deliveries.entities import Address, Distance
 
 class TestController(TestCase):
     def test_success(self):
