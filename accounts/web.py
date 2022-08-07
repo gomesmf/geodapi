@@ -55,4 +55,4 @@ class AccountsService(AccountsServiceInterface):
         return resm
 
     def account_id_exists(self, account_id: int) -> bool:
-        return True
+        return self.dba.account_id_exists(account_id)

@@ -24,3 +24,7 @@ class AccountsServiceInterface(ABC):
     @abstractmethod
     def update_account(self, account_id: int, reqm: UpdateAccountReqM) -> UpdateAccountResM:
         pass
+
+    @abstractmethod
+    def account_id_exists(self, account_id: int) -> bool:
+        pass

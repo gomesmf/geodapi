@@ -85,5 +85,28 @@ class TestUpdateAccount(TestCase):
         self.assertEqual(dba.email_exists.call_count, 1)
         self.assertEqual(dba.update.call_count, 1)
 
+class TestAccountIdExists(TestCase):
+    def test_success(self):
+        dba = Mock()
+        ph = Mock()
+        acs = AccountsService(dba, ph)
+        dba.account_id_exists.return_value = True
+
+        account_id = 1
+
+        aidexists = acs.account_id_exists(account_id)
+        self.assertTrue(aidexists)
+
+    def test_success(self):
+        dba = Mock()
+        ph = Mock()
+        acs = AccountsService(dba, ph)
+        dba.account_id_exists.return_value = False
+
+        account_id = 1
+
+        aidexists = acs.account_id_exists(account_id)
+        self.assertFalse(aidexists)
+
 if __name__ == "__main__":
     main()
