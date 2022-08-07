@@ -1,7 +1,10 @@
-from ast import Add
-from unittest import main, TestCase, skip
+from unittest import main, TestCase
 from unittest.mock import Mock
-from distances.ComputeDistance.controller import AddressM, ComputeDistanceReqM, compute_distance_controller
+from distances.ComputeDistance.controller import (
+    AddressM,
+    ComputeDistanceReqM,
+    compute_distance_controller
+)
 from distances.ComputeDistance.interactor import (
     ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_COULDNT_COMPUTE_DISTANCE,
@@ -15,7 +18,12 @@ from distances.ComputeDistance.interactor import (
     SearchResult,
     compute_distance_interactor
 )
-from distances.ComputeDistance.presenter import ComputeDistanceVM, compute_distance_presenter, dist_between_text
+from distances.ComputeDistance.presenter import (
+    ComputeDistanceVM,
+    compute_distance_presenter,
+    dist_between_text
+)
+from distances.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
 from distances.entities import Address, Distance
 
 class TestController(TestCase):
@@ -391,7 +399,13 @@ class TestPresenter(TestCase):
             self.assertEqual(vmd["text"], dist_between_text(ucout.origin, ucout.destination, ucoutd))
 
 class TestView(TestCase):
-    pass
+    def test_success(self):
+        vm = ComputeDistanceVM(result=[
+            {"value": 10, "unit": "km", "text": "the distance between ..."},
+            {"value": 10, "unit": "km", "text": "the distance between ..."}
+        ])
+        resm = compute_distance_view(vm)
+        self.assertIsInstance(resm, ComputeDistanceResM)
 
 if __name__ == "__main__":
     main()
