@@ -1,18 +1,19 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+
 from accounts.DeleteAccount.view import DeleteAccountResM
 from accounts.UpdateAccount.controller import UpdateAccountReqM
 from accounts.UpdateAccount.view import UpdateAccountResM
-
 from accounts.web import (
     AccountsService,
     CreateAccountReqM,
     CreateAccountResM,
     GetAccountTypesResM
 )
-
 from accounts.helpers import fake_password_hash, get_inmemdba
+
 from deliveries.ComputeDistance.controller import ComputeDistanceReqM
+from deliveries.ComputeDistance.view import ComputeDistanceResM
 from deliveries.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
 from deliveries.web import DelieveriesService
 
@@ -67,7 +68,7 @@ def update_account(account_id: int, reqm: UpdateAccountReqM):
 
     return resm
 
-@app.post("/distances/compute")
+@app.post("/distances/compute", response_model=ComputeDistanceResM)
 def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
     resm = delis.compute_distance(account_id, reqm)
 
