@@ -1,4 +1,5 @@
-from unittest import main, TestCase
+from ast import Add
+from unittest import main, TestCase, skip
 from unittest.mock import Mock
 from distances.ComputeDistance.controller import AddressM, ComputeDistanceReqM, compute_distance_controller
 from distances.ComputeDistance.interactor import (
@@ -14,7 +15,8 @@ from distances.ComputeDistance.interactor import (
     SearchResult,
     compute_distance_interactor
 )
-from distances.entities import Address
+from distances.ComputeDistance.presenter import ComputeDistanceVM, compute_distance_presenter, dist_between_text
+from distances.entities import Address, Distance
 
 class TestController(TestCase):
     def test_success(self):
@@ -38,16 +40,16 @@ class TestController(TestCase):
 
         self.assertIsInstance(ucin, ComputeDistanceUCI)
         self.assertEqual(ucin.account_id, account_id)
-        self.assertIsInstance(ucin.orig, Address)
-        self.assertEqual(ucin.orig.street, reqm.origin.street)
-        self.assertEqual(ucin.orig.house_number, reqm.origin.house_number)
-        self.assertEqual(ucin.orig.city, reqm.origin.city)
-        self.assertEqual(ucin.orig.country, reqm.origin.country)
-        self.assertIsInstance(ucin.dest, Address)
-        self.assertEqual(ucin.dest.street, reqm.destination.street)
-        self.assertEqual(ucin.dest.house_number, reqm.destination.house_number)
-        self.assertEqual(ucin.dest.city, reqm.destination.city)
-        self.assertEqual(ucin.dest.country, reqm.destination.country)
+        self.assertIsInstance(ucin.origin, Address)
+        self.assertEqual(ucin.origin.street, reqm.origin.street)
+        self.assertEqual(ucin.origin.house_number, reqm.origin.house_number)
+        self.assertEqual(ucin.origin.city, reqm.origin.city)
+        self.assertEqual(ucin.origin.country, reqm.origin.country)
+        self.assertIsInstance(ucin.destination, Address)
+        self.assertEqual(ucin.destination.street, reqm.destination.street)
+        self.assertEqual(ucin.destination.house_number, reqm.destination.house_number)
+        self.assertEqual(ucin.destination.city, reqm.destination.city)
+        self.assertEqual(ucin.destination.country, reqm.destination.country)
 
 class TestInteractor(TestCase):
     def test_success(self):
@@ -57,8 +59,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -94,8 +96,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -133,8 +135,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -174,8 +176,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -211,8 +213,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -249,8 +251,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -283,8 +285,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -320,8 +322,8 @@ class TestInteractor(TestCase):
 
         ucin = ComputeDistanceUCI(
             account_id=account_id,
-            orig=origaddr,
-            dest=destaddr
+            origin=origaddr,
+            destination=destaddr
         )
 
         acs = Mock()
@@ -351,7 +353,42 @@ class TestInteractor(TestCase):
         self.assertEqual(dbd.add_distance.call_count, 0)
 
 class TestPresenter(TestCase):
-    pass
+    def test_success(self):
+        origaddr = Address(
+            street="av miguel prisco",
+            house_number=111,
+            city="rib pires",
+            country="Brazil",
+            latitude="23.3456",
+            longitude="23.3456"
+        )
+        destaddr = Address(
+            street="av miguel prisco",
+            house_number=222,
+            city="maua",
+            country="Brazil",
+            latitude="12.3456",
+            longitude="12.3456"
+        )
+        ucout = ComputeDistanceUCO(
+            origin=origaddr,
+            destination=destaddr,
+            result=[
+                Distance(value=16, unit="kilometers"),
+                Distance(value=10, unit="miles"),
+            ]
+        )
+
+        vm = compute_distance_presenter(ucout)
+
+        self.assertIsInstance(vm, ComputeDistanceVM)
+
+        for i in range(len(vm.result)):
+            vmd = vm.result[i]
+            ucoutd = ucout.result[i]
+            self.assertEqual(vmd["value"], ucoutd.value)
+            self.assertEqual(vmd["unit"], ucoutd.unit)
+            self.assertEqual(vmd["text"], dist_between_text(ucout.origin, ucout.destination, ucoutd))
 
 class TestView(TestCase):
     pass

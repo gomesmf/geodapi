@@ -3,5 +3,5 @@ from .entities import Address
 
 class DBDistancesInterface(ABC):
     @abstractmethod
-    def add_distance(self, account_id: int, orig: Address, dest: Address) -> bool:
+    def add_distance(self, account_id: int, origin: Address, destination: Address) -> bool:
         pass

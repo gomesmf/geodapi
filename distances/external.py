@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from typing import Dict, List
 
-from .entities import Address
+from .entities import Address, Distance
 
 class SearchResult:
     def __init__(self, result: Dict = None, errmsg: str = None) -> None:
@@ -16,5 +16,5 @@ class SearchServiceInterface(ABC):
 
 class DistanceServiceInterface(ABC):
     @abstractmethod
-    def compute(self, origlat: float, origlon: float, destlat: float, destlon: float) -> List[Dict]:
+    def compute(self, origlat: float, origlon: float, destlat: float, destlon: float) -> List[Distance]:
         pass

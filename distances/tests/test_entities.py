@@ -8,18 +8,43 @@ class TestAddress(TestCase):
         house_number = "122"
         city = "ribeirao pires"
         country = "brasil"
+        latitude = "12.3233"
+        longitude = "12.3233"
 
         a = Address(
             street=street,
             house_number=house_number,
             city=city,
-            country=country
+            country=country,
+            latitude=latitude,
+            longitude=longitude
         )
 
         self.assertEqual(a.street, street)
         self.assertEqual(a.house_number, house_number)
         self.assertEqual(a.city, city)
         self.assertEqual(a.country, country)
+        self.assertEqual(a.latitude, latitude)
+        self.assertEqual(a.longitude, longitude)
+
+    def test_to_string(self):
+        street = "av miguel prisco"
+        house_number = "122"
+        city = "ribeirao pires"
+        country = "brasil"
+        latitude = "12.3233"
+        longitude = "12.3233"
+
+        a = Address(
+            street=street,
+            house_number=house_number,
+            city=city,
+            country=country,
+            latitude=latitude,
+            longitude=longitude
+        )
+
+        self.assertEqual(a.to_string(), f"{street}, {house_number}, {city}, {country} ({latitude}, {longitude})")
 
 class TestDistance(TestCase):
     def test_instance(self):
