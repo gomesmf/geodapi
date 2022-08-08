@@ -8,7 +8,7 @@ class Address:
         self.longitude = longitude
 
     def to_string(self):
-        return f"{self.street}, {self.house_number}, {self.city}, {self.country} ({self.latitude}, {self.longitude})"
+        return f"{self.street.title()}, {self.house_number}, {self.city.title()}, {self.country.title()} ({self.latitude}, {self.longitude})"
 
 class Distance:
     def __init__(self, value: float, unit: str) -> None:

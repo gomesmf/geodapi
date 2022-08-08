@@ -10,7 +10,7 @@ class ComputeDistanceVM:
         self.detail = detail
 
 def dist_between_text(orig: Address, dest: Address, dist: Distance):
-    return f"The distance between '{orig.to_string()}' and '{dest.to_string()}' is {dist.value} {dist.unit}"
+    return f"The geodesic distance between '{orig.to_string()}' and '{dest.to_string()}' is {dist.value} {dist.unit}"
 
 def compute_distance_presenter(ucout: ComputeDistanceUCO) -> ComputeDistanceVM:
     vm = ComputeDistanceVM(errmsg=ucout.errmsg, detail=ucout.detail)

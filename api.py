@@ -14,6 +14,7 @@ from accounts.helpers import fake_password_hash, get_inmemdba
 
 from deliveries.ComputeDistance.controller import ComputeDistanceReqM
 from deliveries.ComputeDistance.view import ComputeDistanceResM
+from deliveries.geo import GeopyDistanceService
 from deliveries.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
 from deliveries.nominatim import NominatimSearch
 from deliveries.web import DelieveriesService
@@ -31,7 +32,8 @@ dbd = get_inmemdbd()
 # ss = FakeSearchService()
 ss = NominatimSearch()
 
-ds = FakeDistanceService()
+# ds = FakeDistanceService()
+ds = GeopyDistanceService()
 
 delis = DelieveriesService(acs, ss, ds, dbd)
 
