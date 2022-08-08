@@ -47,9 +47,9 @@ delis = DelieveriesService(acs, ss, ds, dbd)
 def get_accounts():
     return dba.get_accounts()
 
-@app.get("/accounts/new", response_model=GetAccountTypesResM)
-def get_accounts():
-    return acs.get_account_types()
+# @app.get("/accounts/new", response_model=GetAccountTypesResM)
+# def get_accounts():
+#     return acs.get_account_types()
 
 @app.post("/accounts", response_model=CreateAccountResM)
 def create_account(reqm: CreateAccountReqM):
@@ -60,7 +60,7 @@ def create_account(reqm: CreateAccountReqM):
 
     return resm
 
-@app.delete("/accounts/{account_id}", response_model=DeleteAccountResM)
+@app.delete("/accounts/me", response_model=DeleteAccountResM)
 def delete_account(account_id: int):
     resm = acs.delete_account(account_id)
 
@@ -69,7 +69,7 @@ def delete_account(account_id: int):
 
     return resm
 
-@app.put("/accounts/{account_id}", response_model=UpdateAccountResM)
+@app.put("/accounts/me", response_model=UpdateAccountResM)
 def update_account(account_id: int, reqm: UpdateAccountReqM):
     resm = acs.update_account(account_id, reqm)
 
@@ -78,7 +78,7 @@ def update_account(account_id: int, reqm: UpdateAccountReqM):
 
     return resm
 
-@app.post("/distances/compute", response_model=ComputeDistanceResM)
+@app.post("/distances", response_model=ComputeDistanceResM)
 def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
     resm = delis.compute_distance(account_id, reqm)
 
