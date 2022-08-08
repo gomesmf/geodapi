@@ -1,4 +1,3 @@
-import errno
 from typing import List
 from .presenter import ComputeDistanceVM
 from pydantic import BaseModel

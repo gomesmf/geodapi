@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from deliveries.ComputeDistance.controller import ComputeDistanceReqM
-from deliveries.ComputeDistance.view import ComputeDistanceResM
+from deliveries.usecases.ComputeDistance.controller import ComputeDistanceReqM
+from deliveries.usecases.ComputeDistance.view import ComputeDistanceResM
 
 
 class DeliveriesServiceInterface(ABC):

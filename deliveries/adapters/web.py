@@ -4,10 +4,10 @@ from deliveries.interfaces.data import DBDistancesInterface
 from deliveries.interfaces.external import DistanceServiceInterface, SearchServiceInterface
 from deliveries.interfaces.service import DeliveriesServiceInterface
 
-from deliveries.ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
-from deliveries.ComputeDistance.interactor import compute_distance_interactor
-from deliveries.ComputeDistance.presenter import compute_distance_presenter
-from deliveries.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
+from deliveries.usecases.ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
+from deliveries.usecases.ComputeDistance.interactor import compute_distance_interactor
+from deliveries.usecases.ComputeDistance.presenter import compute_distance_presenter
+from deliveries.usecases.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
 
 
 class DelieveriesService(DeliveriesServiceInterface):
