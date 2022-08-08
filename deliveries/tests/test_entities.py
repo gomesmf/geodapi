@@ -44,7 +44,7 @@ class TestAddress(TestCase):
             longitude=longitude
         )
 
-        self.assertEqual(a.to_string(), f"{street}, {house_number}, {city}, {country} ({latitude}, {longitude})")
+        self.assertEqual(a.to_string(), f"{street.title()}, {house_number.title()}, {city.title()}, {country.title()} ({latitude}, {longitude})")
 
 class TestDistance(TestCase):
     def test_instance(self):

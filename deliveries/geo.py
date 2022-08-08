@@ -11,7 +11,7 @@ class GeopyDistanceService(DistanceServiceInterface):
         geo_dist = distance.distance(point1, point2)
 
         res = [
-            Distance(round(geo_dist.meters, 2), "meters"),
+            # Distance(round(geo_dist.meters, 2), "meters"),
             Distance(round(geo_dist.kilometers, 2), "kilometers"),
             Distance(round(geo_dist.miles, 2), "miles"),
         ]
