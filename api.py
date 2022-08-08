@@ -20,10 +20,11 @@ from deliveries.adapters.helpers import (
 )
 from deliveries.adapters.nominatim import NominatimSearch
 from deliveries.adapters.web import (
-    DelieveriesService,
+    DeliveriesService,
     ComputeDistanceReqM,
     ComputeDistanceResM
 )
+from deliveries.usecases.GetDistances.view import GetDistancesResM
 
 app = FastAPI(description="Delivery Guy API")
 
@@ -35,13 +36,13 @@ acs = AccountsService(dba, ph)
 
 dbd = get_inmemdbd()
 
-ss = FakeSearchService()
-# ss = NominatimSearch()
+# ss = FakeSearchService()
+ss = NominatimSearch()
 
-ds = FakeDistanceService()
-# ds = GeopyDistanceService()
+# ds = FakeDistanceService()
+ds = GeopyDistanceService()
 
-delis = DelieveriesService(acs, ss, ds, dbd)
+delis = DeliveriesService(acs, ss, ds, dbd)
 
 @app.get("/accounts")
 def get_accounts():
@@ -87,6 +88,11 @@ def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
 
     return resm
 
-@app.get("/distances")
+@app.get("/distances", response_model=GetDistancesResM)
 def get_distances(account_id: int):
-    return dbd.get_distances(account_id)
+    resm = delis.get_distances(account_id)
+
+    if resm.errmsg:
+        return JSONResponse(status_code=400, content=resm.dict())
+
+    return resm
