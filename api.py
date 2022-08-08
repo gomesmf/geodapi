@@ -1,16 +1,16 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-from accounts.DeleteAccount.view import DeleteAccountResM
-from accounts.UpdateAccount.controller import UpdateAccountReqM
-from accounts.UpdateAccount.view import UpdateAccountResM
-from accounts.web import (
+from accounts.usecases.DeleteAccount.view import DeleteAccountResM
+from accounts.usecases.UpdateAccount.controller import UpdateAccountReqM
+from accounts.usecases.UpdateAccount.view import UpdateAccountResM
+from accounts.adapters.web import (
     AccountsService,
     CreateAccountReqM,
     CreateAccountResM,
     GetAccountTypesResM
 )
-from accounts.helpers import fake_password_hash, get_inmemdba
+from accounts.adapters.helpers import fake_password_hash, get_inmemdba
 
 from deliveries.usecases.ComputeDistance.controller import ComputeDistanceReqM
 from deliveries.usecases.ComputeDistance.view import ComputeDistanceResM

@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import List, Tuple
-from accounts.service import AccountsServiceInterface
+from accounts.interfaces.service import AccountsServiceInterface
 from deliveries.entities import Address, Distance
 from deliveries.interfaces.data import DBDistancesInterface
 from deliveries.interfaces.external import SearchResult, SearchServiceInterface, DistanceServiceInterface

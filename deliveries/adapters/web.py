@@ -1,4 +1,4 @@
-from accounts.service import AccountsServiceInterface
+from accounts.interfaces.service import AccountsServiceInterface
 
 from deliveries.interfaces.data import DBDistancesInterface
 from deliveries.interfaces.external import DistanceServiceInterface, SearchServiceInterface
