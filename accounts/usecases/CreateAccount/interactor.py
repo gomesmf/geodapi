@@ -11,6 +11,16 @@ from accounts.entities import (
     validate_email,
     validate_username
 )
+from accounts.usecases.common import (
+    ERRMSG_CANNOT_CREATE_ACCOUNT,
+    ERRMSG_EMAIL_EXISTS,
+    ERRMSG_INVALID_ACCTYPE,
+    ERRMSG_INVALID_EMAIL,
+    ERRMSG_INVALID_NAME,
+    ERRMSG_INVALID_PASSWORD,
+    ERRMSG_INVALID_USERNAME,
+    ERRMSG_USERNAME_EXISTS
+)
 
 class CreateAccountUCI:
     def __init__(self, type: str, name: str, email: str, password: str, username: str) -> None:
@@ -25,14 +35,14 @@ class CreateAccountUCO:
         self.id = id
         self.errmsg = errmsg
 
-ERRMSG_INVALID_ACCTYPE = "Invalid account type"
-ERRMSG_INVALID_PASSWORD = f"Invalid password: must have at least {MIN_LEN_PASSWORD} characters"
-ERRMSG_INVALID_NAME = "Invalid name: cannot be empty"
-ERRMSG_INVALID_USERNAME = f"Invalid username: must have at least {MIN_LEN_USERNAME} characters"
-ERRMSG_INVALID_EMAIL = "Invalid email"
-ERRMSG_EMAIL_EXISTS = "Email already used by another account"
-ERRMSG_USERNAME_EXISTS = "Username already used by another account"
-ERRMSG_CANNOT_CREATE_ACCOUNT = "Account cannot be created in the database"
+# ERRMSG_INVALID_ACCTYPE = "Invalid account type"
+# ERRMSG_INVALID_PASSWORD = f"Invalid password: must have at least {MIN_LEN_PASSWORD} characters"
+# ERRMSG_INVALID_NAME = "Invalid name: cannot be empty"
+# ERRMSG_INVALID_USERNAME = f"Invalid username: must have at least {MIN_LEN_USERNAME} characters"
+# ERRMSG_INVALID_EMAIL = "Invalid email"
+# ERRMSG_EMAIL_EXISTS = "Email already used by another account"
+# ERRMSG_USERNAME_EXISTS = "Username already used by another account"
+# ERRMSG_CANNOT_CREATE_ACCOUNT = "Account cannot be created in the database"
 
 def _validate_ucin(ucin: CreateAccountUCI) -> CreateAccountUCO:
     if not validate_acctype(ucin.type):

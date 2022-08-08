@@ -30,7 +30,7 @@ class InMemoryDBAccounts(DBAccountsInterface):
         del self.data["accounts"][account_id]
         return True
 
-    def update(self, account_id: int, email: str = None, name: str = None, password_hashed: str = None) -> bool:
+    def update(self, account_id: int, email: str = None, name: str = None, username: str = None, password_hashed: str = None) -> bool:
         aobj = self.data["accounts"][account_id]
 
         if email != None:
@@ -38,6 +38,9 @@ class InMemoryDBAccounts(DBAccountsInterface):
 
         if name != None:
             aobj.name = name
+
+        if username != None:
+            aobj.username = username
 
         if password_hashed != None:
             aobj.password_hashed = password_hashed
@@ -66,3 +69,6 @@ def get_inmemdba():
 
 def fake_password_hash(password: str) -> str:
     return f"hash:{password}"
+
+def fake_password_verify(password: str, password_hashed: str) -> bool:
+    return True

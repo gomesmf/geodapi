@@ -21,7 +21,7 @@ class DBAccountsInterface(ABC):
         pass
 
     @abstractmethod
-    def update(self, account_id: int, email: str = None, name: str = None, password_hashed: str = None) -> bool:
+    def update(self, account_id: int, email: str = None, name: str = None, username: str = None, password_hashed: str = None) -> bool:
         pass
 
     @abstractmethod

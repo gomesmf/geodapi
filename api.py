@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import FastAPI, Depends, HTTPException, status, Form
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
@@ -12,7 +13,7 @@ from accounts.adapters.web import (
     CreateAccountReqM,
     CreateAccountResM
 )
-from accounts.adapters.helpers import fake_password_hash, get_inmemdba
+from accounts.adapters.helpers import fake_password_hash, fake_password_verify, get_inmemdba
 
 from deliveries.adapters.geo import GeopyDistanceService
 from deliveries.adapters.helpers import (
@@ -35,9 +36,10 @@ app = FastAPI(description="Delivery Guy API")
 dba = get_inmemdba()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-# ph = fake_password_hash
-ph = pwd_context.hash
-pv = pwd_context.verify
+ph = fake_password_hash
+pv = fake_password_verify
+# ph = pwd_context.hash
+# pv = pwd_context.verify
 
 acs = AccountsService(dba, ph)
 

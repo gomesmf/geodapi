@@ -6,6 +6,7 @@ from .interactor import UpdateAccountUCI
 class UpdateAccountReqM(BaseModel):
     email: str = None
     name: str = None
+    username: str = None
     password: str = None
     password_again: str = None
 
@@ -14,6 +15,7 @@ def update_account_controller(account_id: int, reqm: UpdateAccountReqM) -> Updat
         account_id=account_id,
         email=reqm.email,
         name=reqm.name,
+        username=reqm.username,
         password=reqm.password,
         password_again=reqm.password_again,
     )
