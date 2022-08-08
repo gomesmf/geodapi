@@ -3,6 +3,7 @@ from unittest import main, TestCase
 from unittest.mock import Mock
 
 from deliveries.entities import Address, Distance
+from deliveries.usecases.GetDistances.controller import get_distances_controller
 from deliveries.usecases.GetDistances.interactor import (
     ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_CANNOT_GET_DISTANCES,
@@ -65,6 +66,12 @@ class TestInteractor(TestCase):
         self.assertEqual(dbd.account_id_exists.call_count, 1)
         self.assertEqual(dbd.get_distances.call_count, 1)
         self.assertEqual(ucout.errmsg, ERRMSG_CANNOT_GET_DISTANCES)
+
+class TestController(TestCase):
+    def test_success(self):
+        ucin = get_distances_controller(account_id=1)
+
+        self.assertIsInstance(ucin, GetDistancesUCI)
 
 
 if __name__ == "__main__":
