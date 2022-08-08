@@ -1,13 +1,13 @@
 from accounts.service import AccountsServiceInterface
 
-from .data import DBDistancesInterface
-from .external import DistanceServiceInterface, SearchServiceInterface
-from .service import DeliveriesServiceInterface
+from deliveries.interfaces.data import DBDistancesInterface
+from deliveries.interfaces.external import DistanceServiceInterface, SearchServiceInterface
+from deliveries.interfaces.service import DeliveriesServiceInterface
 
-from .ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
-from .ComputeDistance.interactor import compute_distance_interactor
-from .ComputeDistance.presenter import compute_distance_presenter
-from .ComputeDistance.view import ComputeDistanceResM, compute_distance_view
+from deliveries.ComputeDistance.controller import ComputeDistanceReqM, compute_distance_controller
+from deliveries.ComputeDistance.interactor import compute_distance_interactor
+from deliveries.ComputeDistance.presenter import compute_distance_presenter
+from deliveries.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
 
 
 class DelieveriesService(DeliveriesServiceInterface):

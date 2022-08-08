@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from typing import Dict, List
 
-from .entities import Address, Distance
+from deliveries.entities import Address, Distance
 
 class SearchResult:
     def __init__(self, result: Dict = None, errmsg: str = None) -> None:

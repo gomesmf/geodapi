@@ -1,5 +1,5 @@
-from .entities import Distance
-from .external import DistanceServiceInterface
+from deliveries.entities import Distance
+from deliveries.interfaces.external import DistanceServiceInterface
 
 from geopy import distance
 

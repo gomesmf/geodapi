@@ -1,6 +1,6 @@
 from unittest import main, TestCase
 
-from deliveries.geo import GeopyDistanceService
+from deliveries.adapters.geo import GeopyDistanceService
 
 class TestGeopyDistanceService(TestCase):
     def test_compute(self):

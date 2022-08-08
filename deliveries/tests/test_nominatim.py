@@ -1,7 +1,7 @@
 import os
 from unittest import main, TestCase
 
-from deliveries.nominatim import _search, _search_params
+from deliveries.adapters.nominatim import _search, _search_params
 
 def avoid_heavy_use():
     return os.environ.get("SKIP_NOMINATIM_REQUEST") == "1"

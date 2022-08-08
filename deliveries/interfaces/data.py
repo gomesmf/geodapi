@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import List
 
-from deliveries.external import SearchResult
-from .entities import Address, Distance
+from .external import SearchResult
+from deliveries.entities import Address, Distance
 
 class DBDistancesInterface(ABC):
     @abstractmethod

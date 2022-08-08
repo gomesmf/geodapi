@@ -14,10 +14,10 @@ from accounts.helpers import fake_password_hash, get_inmemdba
 
 from deliveries.ComputeDistance.controller import ComputeDistanceReqM
 from deliveries.ComputeDistance.view import ComputeDistanceResM
-from deliveries.geo import GeopyDistanceService
-from deliveries.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
-from deliveries.nominatim import NominatimSearch
-from deliveries.web import DelieveriesService
+from deliveries.adapters.geo import GeopyDistanceService
+from deliveries.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
+from deliveries.adapters.nominatim import NominatimSearch
+from deliveries.adapters.web import DelieveriesService
 
 app = FastAPI(description="Delivery Guy API")
 
