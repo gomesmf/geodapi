@@ -10,6 +10,16 @@ class Address:
     def to_string(self):
         return f"{self.street.title()}, {self.house_number}, {self.city.title()}, {self.country.title()} ({self.latitude}, {self.longitude})"
 
+    def to_dict(self):
+        return {
+            "street": self.street,
+            "house_number": self.house_number,
+            "city": self.city,
+            "country": self.country,
+            "latitude": self.latitude,
+            "longitude": self.longitude
+        }
+
 class Distance:
     def __init__(self, value: float, unit: str) -> None:
         self.value = value

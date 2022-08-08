@@ -46,6 +46,32 @@ class TestAddress(TestCase):
 
         self.assertEqual(a.to_string(), f"{street.title()}, {house_number.title()}, {city.title()}, {country.title()} ({latitude}, {longitude})")
 
+    def test_to_dict(self):
+        street = "av miguel prisco"
+        house_number = "122"
+        city = "ribeirao pires"
+        country = "brasil"
+        latitude = "12.3233"
+        longitude = "12.3233"
+
+        a = Address(
+            street=street,
+            house_number=house_number,
+            city=city,
+            country=country,
+            latitude=latitude,
+            longitude=longitude
+        )
+
+        self.assertDictEqual(a.to_dict(), {
+            "street": street,
+            "house_number": house_number,
+            "city": city,
+            "country": country,
+            "latitude": latitude,
+            "longitude": longitude,
+        })
+
 class TestDistance(TestCase):
     def test_instance(self):
         unit = "km"

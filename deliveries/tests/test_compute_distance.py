@@ -20,11 +20,12 @@ from deliveries.usecases.ComputeDistance.interactor import (
 )
 from deliveries.usecases.ComputeDistance.presenter import (
     ComputeDistanceVM,
-    compute_distance_presenter,
-    dist_between_text
+    compute_distance_presenter
 )
 from deliveries.usecases.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
 from deliveries.entities import Address, Distance
+from deliveries.usecases.common import dist_between_text
+
 
 class TestController(TestCase):
     def test_success(self):
