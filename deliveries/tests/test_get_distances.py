@@ -14,6 +14,7 @@ from deliveries.usecases.GetDistances.interactor import (
     get_distances_interactor
 )
 from deliveries.usecases.GetDistances.presenter import GetDistancesVM, get_distances_presenter
+from deliveries.usecases.GetDistances.view import AddressCompletM, GetDistancesResM, ResultM, get_distances_view
 from deliveries.usecases.common import datetime_formated, dist_between_text
 
 class TestInteractor(TestCase):
@@ -152,6 +153,53 @@ class TestPresenter(TestCase):
         self.assertIsInstance(vm, GetDistancesVM)
         self.assertEqual(vm.errmsg, ucout.errmsg)
         self.assertIsNone(vm.result)
+
+class TestView(TestCase):
+    def test_success(self):
+        vm = GetDistancesVM(result=[{
+            "origin": {
+                "street": "origin_street",
+                "house_number": 111,
+                "city": "origin_city",
+                "country": "origin_country",
+                "latitude": "origin_latitude",
+                "longitude": "origin_longitude",
+            },
+            "destination": {
+                "street": "destination_street",
+                "house_number": 222,
+                "city": "destination_city",
+                "country": "destination_country",
+                "latitude": "destination_latitude",
+                "longitude": "destination_longitude",
+            },
+            "created_at": "2022-05-10 12:52:33.222222",
+            "distance": [
+                {
+                    "value": 1,
+                    "unit": "km",
+                    "text": "the distance..."
+                }
+            ]
+        }])
+
+        resm = get_distances_view(vm)
+
+        self.assertIsInstance(resm, GetDistancesResM)
+        self.assertEqual(len(resm.result), len(vm.result))
+
+        for i in range(len(resm.result)):
+            resmri = resm.result[i]
+            self.assertIsInstance(resmri, ResultM)
+
+    def test_errmsg(self):
+        vm = GetDistancesVM(errmsg="errmsg")
+
+        resm = get_distances_view(vm)
+
+        self.assertIsInstance(resm, GetDistancesResM)
+        self.assertEqual(resm.errmsg, vm.errmsg)
+        self.assertIsNone(resm.result)
 
 if __name__ == "__main__":
     main()

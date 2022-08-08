@@ -2,11 +2,7 @@ from typing import List
 from .presenter import ComputeDistanceVM
 from pydantic import BaseModel
 
-
-class DistanceResultM(BaseModel):
-    value: float
-    unit: str
-    text: str
+from deliveries.usecases.common import DistanceResultM
 
 class ComputeDistanceResM(BaseModel):
     distances: List[DistanceResultM] = None
