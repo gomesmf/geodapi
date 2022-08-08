@@ -1,9 +1,8 @@
 from unittest import main, TestCase
 
-from accounts.GetAccountTypes.controller import get_account_types_controller
-from accounts.GetAccountTypes.interactor import GetAccountTypesUCO, get_account_types_interactor
-from accounts.GetAccountTypes.presenter import GetAccountTypesVM, get_account_types_presenter
-from accounts.GetAccountTypes.view import GetAccountTypesResM, get_account_types_view
+from accounts.usecases.GetAccountTypes.interactor import GetAccountTypesUCO, get_account_types_interactor
+from accounts.usecases.GetAccountTypes.presenter import GetAccountTypesVM, get_account_types_presenter
+from accounts.usecases.GetAccountTypes.view import GetAccountTypesResM, get_account_types_view
 
 class TestController(TestCase):
     def test_success(self):

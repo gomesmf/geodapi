@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from accounts.UpdateAccount.interactor import UpdateAccountUCI
+from .interactor import UpdateAccountUCI
 
 
 class UpdateAccountReqM(BaseModel):

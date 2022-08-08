@@ -1,14 +1,14 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
-from accounts.CreateAccount.controller import CreateAccountReqM
-from accounts.CreateAccount.view import CreateAccountResM
-from accounts.DeleteAccount.view import DeleteAccountResM
-from accounts.GetAccountTypes.view import GetAccountTypesResM
-from accounts.UpdateAccount.controller import UpdateAccountReqM
-from accounts.UpdateAccount.view import UpdateAccountResM
+from accounts.usecases.CreateAccount.controller import CreateAccountReqM
+from accounts.usecases.CreateAccount.view import CreateAccountResM
+from accounts.usecases.DeleteAccount.view import DeleteAccountResM
+from accounts.usecases.GetAccountTypes.view import GetAccountTypesResM
+from accounts.usecases.UpdateAccount.controller import UpdateAccountReqM
+from accounts.usecases.UpdateAccount.view import UpdateAccountResM
 from accounts.entities import MIN_LEN_PASSWORD, AccountType
 
-from accounts.web import AccountsService
+from accounts.adapters.web import AccountsService
 
 _vld_acctype = AccountType.DELIVERYGUY.value
 _vld_name = "matheus"

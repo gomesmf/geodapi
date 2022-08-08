@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
-from accounts.UpdateAccount.controller import UpdateAccountReqM
-from accounts.UpdateAccount.view import UpdateAccountResM
+from accounts.usecases.UpdateAccount.controller import UpdateAccountReqM
+from accounts.usecases.UpdateAccount.view import UpdateAccountResM
 
-from .CreateAccount.controller import CreateAccountReqM
-from .CreateAccount.view import CreateAccountResM
-from .DeleteAccount.view import DeleteAccountResM
-from .GetAccountTypes.view import GetAccountTypesResM
+from accounts.usecases.CreateAccount.controller import CreateAccountReqM
+from accounts.usecases.CreateAccount.view import CreateAccountResM
+from accounts.usecases.DeleteAccount.view import DeleteAccountResM
+from accounts.usecases.GetAccountTypes.view import GetAccountTypesResM
 
 class AccountsServiceInterface(ABC):
     @abstractmethod

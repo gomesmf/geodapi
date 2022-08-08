@@ -1,16 +1,16 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
 
-from accounts.DeleteAccount.controller import delete_account_controller
-from accounts.DeleteAccount.interactor import (
+from accounts.usecases.DeleteAccount.controller import delete_account_controller
+from accounts.usecases.DeleteAccount.interactor import (
     ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_CANNOT_DELETE_ACCOUNT,
     DeleteAccountUCI,
     DeleteAccountUCO,
     delete_account_interactor
 )
-from accounts.DeleteAccount.presenter import DeleteAccountVM, delete_account_presenter
-from accounts.DeleteAccount.view import DeleteAccountResM, delete_account_view
+from accounts.usecases.DeleteAccount.presenter import DeleteAccountVM, delete_account_presenter
+from accounts.usecases.DeleteAccount.view import DeleteAccountResM, delete_account_view
 
 class TestController(TestCase):
     def test_success(self):

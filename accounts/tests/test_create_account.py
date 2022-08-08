@@ -1,11 +1,11 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
 from accounts.entities import MIN_LEN_PASSWORD, AccountType
-from accounts.CreateAccount.controller import (
+from accounts.usecases.CreateAccount.controller import (
     CreateAccountReqM,
     create_account_controller
 )
-from accounts.CreateAccount.interactor import (
+from accounts.usecases.CreateAccount.interactor import (
     ERRMSG_CANNOT_CREATE_ACCOUNT,
     ERRMSG_EMAIL_EXISTS,
     ERRMSG_INVALID_ACCTYPE,
@@ -16,11 +16,11 @@ from accounts.CreateAccount.interactor import (
     CreateAccountUCO,
     create_account_interactor
 )
-from accounts.CreateAccount.presenter import (
+from accounts.usecases.CreateAccount.presenter import (
     CreateAccountVM,
     create_account_presenter
 )
-from accounts.CreateAccount.view import (
+from accounts.usecases.CreateAccount.view import (
     CreateAccountResM,
     create_account_view
 )

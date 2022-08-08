@@ -1,26 +1,22 @@
 from typing import Callable
 
-from .data import DBAccountsInterface
-from .service import AccountsServiceInterface
-
-from .DeleteAccount.controller import delete_account_controller
-from .DeleteAccount.interactor import delete_account_interactor
-from .DeleteAccount.presenter import delete_account_presenter
-from .DeleteAccount.view import DeleteAccountResM, delete_account_view
-
-from .UpdateAccount.controller import UpdateAccountReqM, update_account_controller
-from .UpdateAccount.interactor import update_account_interactor
-from .UpdateAccount.presenter import update_account_presenter
-from .UpdateAccount.view import UpdateAccountResM, update_account_view
-
-from .CreateAccount.controller import CreateAccountReqM, create_account_controller
-from .CreateAccount.interactor import create_account_interactor
-from .CreateAccount.presenter import create_account_presenter
-from .CreateAccount.view import CreateAccountResM, create_account_view
-
-from .GetAccountTypes.interactor import get_account_types_interactor
-from .GetAccountTypes.presenter import get_account_types_presenter
-from .GetAccountTypes.view import GetAccountTypesResM, get_account_types_view
+from accounts.interfaces.data import DBAccountsInterface
+from accounts.interfaces.service import AccountsServiceInterface
+from accounts.usecases.DeleteAccount.controller import delete_account_controller
+from accounts.usecases.DeleteAccount.interactor import delete_account_interactor
+from accounts.usecases.DeleteAccount.presenter import delete_account_presenter
+from accounts.usecases.DeleteAccount.view import DeleteAccountResM, delete_account_view
+from accounts.usecases.UpdateAccount.controller import UpdateAccountReqM, update_account_controller
+from accounts.usecases.UpdateAccount.interactor import update_account_interactor
+from accounts.usecases.UpdateAccount.presenter import update_account_presenter
+from accounts.usecases.UpdateAccount.view import UpdateAccountResM, update_account_view
+from accounts.usecases.CreateAccount.controller import CreateAccountReqM, create_account_controller
+from accounts.usecases.CreateAccount.interactor import create_account_interactor
+from accounts.usecases.CreateAccount.presenter import create_account_presenter
+from accounts.usecases.CreateAccount.view import CreateAccountResM, create_account_view
+from accounts.usecases.GetAccountTypes.interactor import get_account_types_interactor
+from accounts.usecases.GetAccountTypes.presenter import get_account_types_presenter
+from accounts.usecases.GetAccountTypes.view import GetAccountTypesResM, get_account_types_view
 
 class AccountsService(AccountsServiceInterface):
     def __init__(self, dba: DBAccountsInterface, ph: Callable[[str], str]) -> None:

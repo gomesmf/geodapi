@@ -1,5 +1,5 @@
 from typing import Callable
-from accounts.data import DBAccountsInterface
+from accounts.interfaces.data import DBAccountsInterface
 from accounts.entities import validate_email, validate_name, validate_password
 
 class UpdateAccountUCI:

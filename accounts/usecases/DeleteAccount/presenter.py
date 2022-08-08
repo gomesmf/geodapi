@@ -1,4 +1,4 @@
-from accounts.DeleteAccount.interactor import DeleteAccountUCO
+from .interactor import DeleteAccountUCO
 
 class DeleteAccountVM:
     def __init__(self, account_id: int = None, errmsg: str = None) -> None:

@@ -1,7 +1,7 @@
 from typing import Dict
 from accounts.entities import Account
 
-from accounts.data import DBAccountsInterface
+from accounts.interfaces.data import DBAccountsInterface
 
 class InMemoryDBAccounts(DBAccountsInterface):
     def __init__(self, data: Dict = None) -> None:

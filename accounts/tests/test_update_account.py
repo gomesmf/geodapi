@@ -1,10 +1,10 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
-from accounts.UpdateAccount.controller import (
+from accounts.usecases.UpdateAccount.controller import (
     UpdateAccountReqM,
     update_account_controller
 )
-from accounts.UpdateAccount.interactor import (
+from accounts.usecases.UpdateAccount.interactor import (
     ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_CANNOT_UPDATE_ACCOUNT,
     ERRMSG_EMAIL_ALREADY_EXISTS,
@@ -16,11 +16,11 @@ from accounts.UpdateAccount.interactor import (
     UpdateAccountUCO,
     update_account_interactor
 )
-from accounts.UpdateAccount.presenter import (
+from accounts.usecases.UpdateAccount.presenter import (
     UpdateAccountVM,
     update_account_presenter
 )
-from accounts.UpdateAccount.view import (
+from accounts.usecases.UpdateAccount.view import (
     UpdateAccountResM,
     update_account_view
 )

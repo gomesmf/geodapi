@@ -1,7 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel
 
-from accounts.DeleteAccount.presenter import DeleteAccountVM
+from .presenter import DeleteAccountVM
 
 
 class DeleteAccountResM(BaseModel):

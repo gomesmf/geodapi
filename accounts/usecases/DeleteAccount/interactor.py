@@ -1,4 +1,4 @@
-from accounts.data import DBAccountsInterface
+from accounts.interfaces.data import DBAccountsInterface
 
 
 class DeleteAccountUCI:
