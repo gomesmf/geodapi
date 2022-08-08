@@ -1,3 +1,5 @@
+from datetime import datetime
+from time import strftime
 from typing import List
 from .entities import Address, Distance
 from .external import SearchServiceInterface, SearchResult, DistanceServiceInterface
@@ -19,20 +21,27 @@ class FakeDistanceService(DistanceServiceInterface):
 
 class InMemoryDBDistances(DBDistancesInterface):
     def __init__(self) -> None:
-        self.data = []
+        self.data = {"distances": {}}
 
-    def add_distance(self, account_id: int, orig: Address, origsres: SearchResult, dest: Address, destsres: SearchResult, dsres: List[Distance]) -> bool:
-        self.data.append(
+    def add_distance(self, account_id: int, orig: Address, origsres: SearchResult, dest: Address, destsres: SearchResult, dsres: List[Distance], added_at: datetime) -> bool:
+        if account_id not in self.data["distances"]:
+            self.data["distances"][account_id] = []
+        self.data["distances"][account_id].append(
             {
                 "account_id": account_id,
                 "origin": orig,
                 "origin_search_result": origsres,
                 "destination": dest,
                 "destination_search_result": destsres,
-                "distance": dsres
+                "distance": dsres,
+                "added_at_timestamp": str(added_at.timestamp()),
+                "added_at": str(added_at.strftime("%Y-%m-%d %H:%m:%S.%f"))
             }
         )
         return True
+
+    def get_queries(self):
+        return self.data
 
 def get_inmemdbd():
     return InMemoryDBDistances()

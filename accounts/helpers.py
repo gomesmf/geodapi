@@ -44,6 +44,9 @@ class InMemoryDBAccounts(DBAccountsInterface):
 
         return True
 
+    def get_account(self):
+        return self.data
+
 def get_inmemdba():
     return InMemoryDBAccounts()
 

@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List, Tuple
 from accounts.service import AccountsServiceInterface
 from deliveries.entities import Address, Distance
@@ -66,7 +67,9 @@ def compute_distance_interactor(
     if not dsres:
         return ComputeDistanceUCO(errmsg=ERRMSG_COULDNT_COMPUTE_DISTANCE)
 
-    if not dbd.add_distance(ucin.account_id, ucin.origin, origsres, ucin.destination, destsres, dsres):
+    added_at = datetime.now()
+
+    if not dbd.add_distance(ucin.account_id, ucin.origin, origsres, ucin.destination, destsres, dsres, added_at):
         return ComputeDistanceUCO(errmsg=ERRMSG_COULDNT_SAVE_RESULT)
 
     return ComputeDistanceUCO(origin=ucin.origin, destination=ucin.destination, result=dsres)

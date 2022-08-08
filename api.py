@@ -35,7 +35,7 @@ delis = DelieveriesService(acs, ss, ds, dbd)
 
 @app.get("/accounts")
 def get_accounts():
-    return dba.data
+    return dba.get_accounts()
 
 @app.get("/accounts/new", response_model=GetAccountTypesResM)
 def get_accounts():
@@ -79,4 +79,4 @@ def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
 
 @app.get("/distances")
 def get_queries():
-    return dbd.data
+    return dbd.get_queries()
