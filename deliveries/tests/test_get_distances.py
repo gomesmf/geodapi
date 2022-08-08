@@ -6,7 +6,6 @@ from datetime import datetime
 from deliveries.entities import Address, Distance
 from deliveries.usecases.GetDistances.controller import get_distances_controller
 from deliveries.usecases.GetDistances.interactor import (
-    ERRMSG_ACCOUNT_NOT_FOUND,
     ERRMSG_CANNOT_GET_DISTANCES,
     DistanceResult,
     GetDistancesUCI,
@@ -47,7 +46,7 @@ class TestInteractor(TestCase):
 
         self.assertIsInstance(ucout, GetDistancesUCO)
         self.assertEqual(dbd.account_id_exists.call_count, 1)
-        self.assertEqual(ucout.errmsg, ERRMSG_ACCOUNT_NOT_FOUND)
+        self.assertEqual(ucout.result, [])
         self.assertEqual(dbd.get_distances.call_count, 0)
 
     def test_success(self):

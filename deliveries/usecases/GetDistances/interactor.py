@@ -15,7 +15,7 @@ ERRMSG_CANNOT_GET_DISTANCES = "Cannot get distances from database"
 
 def get_distances_interactor(dbd: DBDistancesInterface, ucin: GetDistancesUCI) -> GetDistancesUCO:
     if not dbd.account_id_exists(ucin.account_id):
-        return GetDistancesUCO(errmsg=ERRMSG_ACCOUNT_NOT_FOUND)
+        return GetDistancesUCO(result=[])
 
     dres, err = dbd.get_distances(ucin.account_id)
     if err:
