@@ -1,8 +1,8 @@
 from datetime import datetime
-from typing import List
+from typing import List, Tuple
 from deliveries.entities import Address, Distance
 from deliveries.interfaces.external import SearchServiceInterface, SearchResult, DistanceServiceInterface
-from deliveries.interfaces.data import DBDistancesInterface
+from deliveries.interfaces.data import DBDistancesInterface, DistanceResult
 
 class FakeSearchService(SearchServiceInterface):
     def search(self, addr: Address) -> SearchResult:
@@ -34,13 +34,25 @@ class InMemoryDBDistances(DBDistancesInterface):
                 "destination_search_result": destsres,
                 "distance": dsres,
                 "added_at_timestamp": str(added_at.timestamp()),
-                "added_at": str(added_at.strftime("%Y-%m-%d %H:%m:%S.%f"))
+                "added_at": added_at,
             }
         )
         return True
 
-    def get_distances(self, account_id: int):
-        return self.data["distances"][account_id]
+    def get_distances(self, account_id: int) -> Tuple[List[DistanceResult], bool]:
+        drlist = []
+        for r in self.data["distances"][account_id]:
+            drlist.append(DistanceResult(
+                origin=r["origin"],
+                destination=r["destination"],
+                distance=r["distance"],
+                datetime=r["added_at"]
+            ))
+
+        return drlist, False
+
+    def account_id_exists(self, account_id: int) -> bool:
+        return account_id in self.data["distances"]
 
 def get_inmemdbd():
     return InMemoryDBDistances()

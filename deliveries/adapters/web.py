@@ -10,7 +10,13 @@ from deliveries.usecases.ComputeDistance.presenter import compute_distance_prese
 from deliveries.usecases.ComputeDistance.view import ComputeDistanceResM, compute_distance_view
 
 
-class DelieveriesService(DeliveriesServiceInterface):
+from deliveries.usecases.GetDistances.controller import get_distances_controller
+from deliveries.usecases.GetDistances.interactor import get_distances_interactor
+from deliveries.usecases.GetDistances.presenter import get_distances_presenter
+from deliveries.usecases.GetDistances.view import GetDistancesResM, get_distances_view
+
+
+class DeliveriesService(DeliveriesServiceInterface):
     def __init__(self, acs: AccountsServiceInterface, ss: SearchServiceInterface, ds: DistanceServiceInterface, dbd: DBDistancesInterface) -> None:
         self.acs = acs
         self.ss = ss
@@ -22,4 +28,11 @@ class DelieveriesService(DeliveriesServiceInterface):
         ucout = compute_distance_interactor(self.acs, self.ss, self.ds, self.dbd, ucin)
         vm = compute_distance_presenter(ucout)
         resm = compute_distance_view(vm)
+        return resm
+
+    def get_distances(self, account_id: int) -> GetDistancesResM:
+        ucin = get_distances_controller(account_id)
+        ucout = get_distances_interactor(self.dbd, ucin)
+        vm = get_distances_presenter(ucout)
+        resm = get_distances_view(vm)
         return resm

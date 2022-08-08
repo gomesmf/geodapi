@@ -20,3 +20,7 @@ class DBDistancesInterface(ABC):
     @abstractmethod
     def get_distances(self, account_id: int) -> Tuple[List[DistanceResult], bool]:
         pass
+
+    @abstractmethod
+    def account_id_exists(self, account_id: int) -> bool:
+        pass
