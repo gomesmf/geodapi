@@ -19,3 +19,6 @@ updatereqs:
 PORT ?= 8000
 runapi:
 	python3 -m uvicorn api:app --reload --host 0.0.0.0 --port ${PORT}
+
+genseckey:
+	openssl rand -hex 32

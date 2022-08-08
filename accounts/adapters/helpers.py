@@ -47,6 +47,20 @@ class InMemoryDBAccounts(DBAccountsInterface):
     def get_accounts(self):
         return self.data
 
+    def username_exists(self, username: str) -> bool:
+        for _, aobj in self.data["accounts"].items():
+            if username == aobj.email:
+                return True
+        return False
+
+    def get_account_by_username(self, username: str) -> Account:
+        for _, aobj in self.data["accounts"].items():
+            if username == aobj.email:
+                return aobj
+
+    def get_account_by_id(self, account_id: int) -> Account:
+        return self.data["accounts"][account_id]
+
 def get_inmemdba():
     return InMemoryDBAccounts()
 

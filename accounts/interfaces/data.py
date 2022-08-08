@@ -23,3 +23,15 @@ class DBAccountsInterface(ABC):
     @abstractmethod
     def update(self, account_id: int, email: str = None, name: str = None, password_hashed: str = None) -> bool:
         pass
+
+    @abstractmethod
+    def username_exists(self, username: str) -> bool:
+        pass
+
+    @abstractmethod
+    def get_account_by_username(self, username: str) -> Account:
+        pass
+
+    @abstractmethod
+    def get_account_by_id(self, account_id: int) -> Account:
+        pass
