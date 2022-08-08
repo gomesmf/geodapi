@@ -14,7 +14,7 @@ class FakeSearchService(SearchServiceInterface):
 class FakeDistanceService(DistanceServiceInterface):
     def compute(self, origlat: float, origlon: float, destlat: float, destlon: float) -> List[Distance]:
         return [
-            Distance(value=10.0, unit="km"),
+            Distance(value=10.0, unit="kilometers"),
             Distance(value=5.0, unit="miles")
         ]
 
@@ -39,8 +39,8 @@ class InMemoryDBDistances(DBDistancesInterface):
         )
         return True
 
-    def get_queries(self):
-        return self.data
+    def get_queries(self, account_id: int):
+        return self.data["distances"][account_id]
 
 def get_inmemdbd():
     return InMemoryDBDistances()

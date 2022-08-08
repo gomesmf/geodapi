@@ -9,3 +9,7 @@ class DBDistancesInterface(ABC):
     @abstractmethod
     def add_distance(self, account_id: int, orig: Address, origsres: SearchResult, dest: Address, destsres: SearchResult, dsres: List[Distance], added_at: datetime) -> bool:
         pass
+
+    @abstractmethod
+    def get_queries(self, account_id: int):
+        pass

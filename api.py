@@ -12,12 +12,18 @@ from accounts.adapters.web import (
 )
 from accounts.adapters.helpers import fake_password_hash, get_inmemdba
 
-from deliveries.usecases.ComputeDistance.controller import ComputeDistanceReqM
-from deliveries.usecases.ComputeDistance.view import ComputeDistanceResM
 from deliveries.adapters.geo import GeopyDistanceService
-from deliveries.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
+from deliveries.adapters.helpers import (
+    FakeDistanceService,
+    FakeSearchService,
+    get_inmemdbd
+)
 from deliveries.adapters.nominatim import NominatimSearch
-from deliveries.adapters.web import DelieveriesService
+from deliveries.adapters.web import (
+    DelieveriesService,
+    ComputeDistanceReqM,
+    ComputeDistanceResM
+)
 
 app = FastAPI(description="Delivery Guy API")
 
@@ -29,11 +35,11 @@ acs = AccountsService(dba, ph)
 
 dbd = get_inmemdbd()
 
-# ss = FakeSearchService()
-ss = NominatimSearch()
+ss = FakeSearchService()
+# ss = NominatimSearch()
 
-# ds = FakeDistanceService()
-ds = GeopyDistanceService()
+ds = FakeDistanceService()
+# ds = GeopyDistanceService()
 
 delis = DelieveriesService(acs, ss, ds, dbd)
 
@@ -82,5 +88,5 @@ def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
     return resm
 
 @app.get("/distances")
-def get_queries():
-    return dbd.get_queries()
+def get_queries(account_id: int):
+    return dbd.get_queries(account_id)
