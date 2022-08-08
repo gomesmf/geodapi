@@ -35,14 +35,16 @@ def update_account_interactor(dba: DBAccountsInterface, ph: Callable[[str], str]
     if not dba.account_id_exists(ucin.account_id):
         return UpdateAccountUCO(errmsg=ERRMSG_ACCOUNT_NOT_FOUND)
 
-    if ucin.email != None:
+    me = dba.get_account_by_id(ucin.account_id)
+
+    if ucin.email != None and ucin.email != me.email:
         if dba.email_exists(ucin.email):
             return UpdateAccountUCO(errmsg=ERRMSG_EMAIL_EXISTS)
 
         if not validate_email(ucin.email):
             return UpdateAccountUCO(errmsg=ERRMSG_INVALID_EMAIL)
 
-    if ucin.username != None:
+    if ucin.username != None and ucin.username != me.username:
         if dba.username_exists(ucin.username):
             return UpdateAccountUCO(errmsg=ERRMSG_USERNAME_EXISTS)
 
