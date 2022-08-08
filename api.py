@@ -15,6 +15,7 @@ from accounts.helpers import fake_password_hash, get_inmemdba
 from deliveries.ComputeDistance.controller import ComputeDistanceReqM
 from deliveries.ComputeDistance.view import ComputeDistanceResM
 from deliveries.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
+from deliveries.nominatim import NominatimSearch
 from deliveries.web import DelieveriesService
 
 app = FastAPI(description="Delivery Guy API")
@@ -27,7 +28,8 @@ acs = AccountsService(dba, ph)
 
 dbd = get_inmemdbd()
 
-ss = FakeSearchService()
+# ss = FakeSearchService()
+ss = NominatimSearch()
 
 ds = FakeDistanceService()
 
