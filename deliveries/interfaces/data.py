@@ -1,9 +1,16 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import List
+from typing import List, Tuple
 
 from .external import SearchResult
 from deliveries.entities import Address, Distance
+
+class DistanceResult:
+    def __init__(self, origin: Address, destination: Address, distance: List[Distance], datetime: datetime) -> None:
+        self.origin = origin
+        self.destination = destination
+        self.distance = distance
+        self.datetime = datetime
 
 class DBDistancesInterface(ABC):
     @abstractmethod
@@ -11,5 +18,5 @@ class DBDistancesInterface(ABC):
         pass
 
     @abstractmethod
-    def get_queries(self, account_id: int):
+    def get_distances(self, account_id: int) -> Tuple[List[DistanceResult], bool]:
         pass

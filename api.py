@@ -88,5 +88,5 @@ def compute_distance(account_id: int, reqm: ComputeDistanceReqM):
     return resm
 
 @app.get("/distances")
-def get_queries(account_id: int):
-    return dbd.get_queries(account_id)
+def get_distances(account_id: int):
+    return dbd.get_distances(account_id)

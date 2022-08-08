@@ -39,7 +39,7 @@ class InMemoryDBDistances(DBDistancesInterface):
         )
         return True
 
-    def get_queries(self, account_id: int):
+    def get_distances(self, account_id: int):
         return self.data["distances"][account_id]
 
 def get_inmemdbd():

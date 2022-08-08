@@ -1,13 +1,13 @@
-test_accounts: export PYTHONPATH=../..
+test_accounts: export PYTHONPATH=${PWD}
 test_accounts:
 	cd accounts/tests && python3 -m unittest -v
 
 test_deliveries: export SKIP_NOMINATIM_REQUEST=1
-test_deliveries: export PYTHONPATH=../..
+test_deliveries: export PYTHONPATH=${PWD}
 test_deliveries:
 	cd deliveries/tests && python3 -m unittest -v
 
-test_nominatim: export PYTHONPATH=../..
+test_nominatim: export PYTHONPATH=${PWD}
 test_nominatim:
 	cd deliveries/tests && python3 -m unittest -v test_nominatim
 
