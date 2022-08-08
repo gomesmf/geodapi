@@ -1,10 +1,13 @@
-from typing import Optional
 from fastapi import FastAPI, Depends, HTTPException, status, Form
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 
-from accounts.auth import authenticate_account, authorize_account, create_account_id_access_token, AccountM
-
+from accounts.auth import (
+    authenticate_account,
+    authorize_account,
+    create_account_id_access_token,
+    AccountM
+)
 from accounts.usecases.DeleteAccount.view import DeleteAccountResM
 from accounts.usecases.UpdateAccount.controller import UpdateAccountReqM
 from accounts.usecases.UpdateAccount.view import UpdateAccountResM
@@ -13,15 +16,6 @@ from accounts.adapters.web import (
     CreateAccountReqM,
     CreateAccountResM
 )
-from accounts.adapters.helpers import fake_password_hash, fake_password_verify, get_inmemdba
-
-from deliveries.adapters.geo import GeopyDistanceService
-from deliveries.adapters.helpers import (
-    FakeDistanceService,
-    FakeSearchService,
-    get_inmemdbd
-)
-from deliveries.adapters.nominatim import NominatimSearch
 from deliveries.adapters.web import (
     DeliveriesService,
     ComputeDistanceReqM,
@@ -29,27 +23,11 @@ from deliveries.adapters.web import (
 )
 from deliveries.usecases.GetDistances.view import GetDistancesResM
 
-from passlib.context import CryptContext
+from config import dba, dbd, ss, ds, ph, pv
 
 app = FastAPI(description="Delivery Guy API")
 
-dba = get_inmemdba()
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-ph = fake_password_hash
-pv = fake_password_verify
-# ph = pwd_context.hash
-# pv = pwd_context.verify
-
 acs = AccountsService(dba, ph)
-
-dbd = get_inmemdbd()
-
-ss = FakeSearchService()
-# ss = NominatimSearch()
-
-ds = FakeDistanceService()
-# ds = GeopyDistanceService()
 
 delis = DeliveriesService(acs, ss, ds, dbd)
 
@@ -85,9 +63,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
 def get_accounts(current_account: AccountM = Depends(get_current_account)):
     return current_account
 
-@app.get("/accounts/all")
-def get_accounts():
-    return dba.data
+# @app.get("/accounts/all")
+# def get_accounts():
+#     return dba.data
 
 # @app.get("/accounts/new", response_model=GetAccountTypesResM)
 # def get_accounts():
