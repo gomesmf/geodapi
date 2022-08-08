@@ -49,13 +49,13 @@ class InMemoryDBAccounts(DBAccountsInterface):
 
     def username_exists(self, username: str) -> bool:
         for _, aobj in self.data["accounts"].items():
-            if username == aobj.email:
+            if username == aobj.username:
                 return True
         return False
 
     def get_account_by_username(self, username: str) -> Account:
         for _, aobj in self.data["accounts"].items():
-            if username == aobj.email:
+            if username == aobj.username:
                 return aobj
 
     def get_account_by_id(self, account_id: int) -> Account:

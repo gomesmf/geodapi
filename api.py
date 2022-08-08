@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, status, Form
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 
@@ -92,7 +92,13 @@ def get_accounts():
 #     return acs.get_account_types()
 
 @app.post("/accounts", response_model=CreateAccountResM)
-def create_account(reqm: CreateAccountReqM):
+def create_account(name: str = Form(), username: str = Form(), email: str = Form(), password: str = Form()):
+    reqm = CreateAccountReqM(
+        name=name,
+        username=username,
+        email=email,
+        password=password,
+    )
     resm = acs.create_account(reqm)
 
     if resm.errmsg:

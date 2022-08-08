@@ -76,6 +76,6 @@ def authorize_account(dba: DBAccountsInterface, token: str) -> Union[Account, bo
     return AccountM(
         account_id=acc.id,
         name=acc.name,
-        username=acc.email,
+        username=acc.username,
         email=acc.email
     )

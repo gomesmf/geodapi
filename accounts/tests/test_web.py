@@ -1,5 +1,6 @@
 from unittest import main, TestCase
 from unittest.mock import Mock
+from accounts.tests.utils import VLD_ACCTYPE, VLD_EMAIL, VLD_NAME, VLD_PASSWORD, VLD_USERNAME
 from accounts.usecases.CreateAccount.controller import CreateAccountReqM
 from accounts.usecases.CreateAccount.view import CreateAccountResM
 from accounts.usecases.DeleteAccount.view import DeleteAccountResM
@@ -10,11 +11,6 @@ from accounts.entities import MIN_LEN_PASSWORD, AccountType
 
 from accounts.adapters.web import AccountsService
 
-_vld_acctype = AccountType.DELIVERYGUY.value
-_vld_name = "matheus"
-_vld_email = "matheus@email.com"
-_vld_password = "p"*MIN_LEN_PASSWORD
-
 class TestCreateAccount(TestCase):
     def test_success(self):
         dba = Mock()
@@ -22,19 +18,22 @@ class TestCreateAccount(TestCase):
         acs = AccountsService(dba, ph)
 
         reqm = CreateAccountReqM(
-            type=_vld_acctype,
-            name=_vld_name,
-            email=_vld_email,
-            password=_vld_password
+            type=VLD_ACCTYPE,
+            name=VLD_NAME,
+            email=VLD_EMAIL,
+            username=VLD_USERNAME,
+            password=VLD_PASSWORD
         )
 
         dba.email_exists.return_value = False
+        dba.username_exists.return_value = False
         dba.create.return_value = True
 
         resm = acs.create_account(reqm)
 
         self.assertIsInstance(resm, CreateAccountResM)
         self.assertEqual(dba.email_exists.call_count, 1)
+        self.assertEqual(dba.username_exists.call_count, 1)
         self.assertEqual(ph.call_count, 1)
         self.assertEqual(dba.create.call_count, 1)
 
@@ -72,10 +71,10 @@ class TestUpdateAccount(TestCase):
         account_id = 1
 
         reqm = UpdateAccountReqM(
-            email=_vld_email,
-            name=_vld_name,
-            password=_vld_password,
-            password_again=_vld_password
+            email=VLD_EMAIL,
+            name=VLD_NAME,
+            password=VLD_PASSWORD,
+            password_again=VLD_PASSWORD
         )
 
         resm = acs.update_account(account_id, reqm)
