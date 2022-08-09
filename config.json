@@ -1,7 +1,7 @@
 {
     "db_accounts": "redis",
-    "db_deliveries": "inmem",
+    "db_deliveries": "redis",
     "pwdhashing": "passlib",
-    "search_service": "fake",
-    "distance_service": "fake"
+    "search_service": "nominatim",
+    "distance_service": "geopy"
 }

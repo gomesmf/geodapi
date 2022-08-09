@@ -8,6 +8,7 @@ from accounts.adapters.helpers import fake_password_hash, fake_password_verify, 
 from deliveries.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
 from deliveries.adapters.nominatim import NominatimSearch
 from deliveries.adapters.geo import GeopyDistanceService
+from deliveries.adapters.redisdb import RedisDBDistances
 
 def read_config():
     with open("config.json") as f:
@@ -35,7 +36,7 @@ def get_db_deliveries(configd):
     dbd = get_inmemdbd()
     if configd.get("db_deliveries") == "redis":
         print("using redis database for deliveries")
-        pass
+        dbd = RedisDBDistances()
     return dbd
 
 def get_search_service(configd):

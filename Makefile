@@ -15,6 +15,10 @@ test_accounts_redisdb: export PYTHONPATH=${PWD}
 test_accounts_redisdb:
 	cd accounts/tests && python3 -m unittest -v test_redisdb
 
+test_deliveries_redisdb: export PYTHONPATH=${PWD}
+test_deliveries_redisdb:
+	cd deliveries/tests && python3 -m unittest -v test_redisdb
+
 test: test_accounts test_deliveries
 
 updatereqs:
