@@ -22,3 +22,7 @@ runapi:
 
 genseckey:
 	openssl rand -hex 32
+
+runapp: PYTHONPATH=${PWD}
+runapp:
+	python3 -m uvicorn app.main:app --reload --host 0.0.0.0 --port ${PORT}
