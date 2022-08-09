@@ -26,3 +26,8 @@ genseckey:
 runapp: PYTHONPATH=${PWD}
 runapp:
 	python3 -m uvicorn app.main:app --reload --host 0.0.0.0 --port ${PORT}
+
+DG_IMGNAME = dgapi
+build_dg:
+	docker build -t ${DG_IMGNAME} -f ./Dockerfile .
+
