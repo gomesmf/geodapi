@@ -81,7 +81,7 @@ data:
 	-mkdir -p data
 
 redis: data
-	-redis-server redis.conf
+	-redis-server ./etc/redis.conf
 
 cleandata:
 	rm -rf data
