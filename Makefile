@@ -85,3 +85,8 @@ redis: data
 
 cleandata:
 	rm -rf data
+
+cleanpycache:
+	find . -type d -name __pycache__ -exec rm -rf {} \;
+
+cleandir: cleandata cleanpycache
