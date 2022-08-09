@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  api:
+    image: "dgapi"
+    ports:
+      - "8000:5000"
+    volumes:
+      - .:/code
+      - ./app:/dg/app
+  redis:
+    image: "redis:alpine"
+    volumes:
+      - dgredis:/data
+volumes:
+  dgredis:

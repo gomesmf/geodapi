@@ -33,7 +33,11 @@ builddg:
 	docker build -t ${DG_IMGNAME} -f ./Dockerfile .
 
 rundg:
-	docker run -d --name ${DG_CNAME} -p 8000:5000 ${DG_IMGNAME}
+	docker run -d \
+		--name ${DG_CNAME} \
+		-p 8000:5000 \
+		-v ${PWD}/app:/dg/app \
+		${DG_IMGNAME}
 
 bashdg:
 	docker exec -it ${DG_CNAME} bash
@@ -43,3 +47,23 @@ rmfdg:
 
 logsdg:
 	docker logs --tail 1000 -f ${DG_CNAME}
+
+cup:
+	docker compose -f docker-compose.dev.yml up -d
+
+cstop:
+	docker compose -f docker-compose.dev.yml stop
+
+crmf:
+	docker compose -f docker-compose.dev.yml rm -f
+
+cstoprmf: composestop composermf
+
+ckill:
+	docker compose -f docker-compose.dev.yml kill
+
+cbashredis:
+	docker exec -it dg-redis-1 sh
+
+cbashdg:
+	docker exec -it dg-api-1 bash
