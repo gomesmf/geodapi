@@ -1,19 +1,20 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.responses import RedirectResponse
 
 from app.dependencies import dba, pv, credentials_exception
 from app.routers import accounts, distances
 
 from accounts.auth import authenticate_account, create_account_id_access_token
 
-description = [
+description = "\n".join([
     "Geodesic Distance API",
     "1. Create account (POST /accounts) and login (button 'Authorize')",
     "2. Compute geodesic distance between two addresses (POST /distances)",
     "3. Get historical queries (GET /distances)"
-]
+])
 
-app = FastAPI(description="\n".join(description))
+app = FastAPI(description=description, docs_url="/")
 
 app.include_router(accounts.router)
 app.include_router(distances.router)
