@@ -21,7 +21,7 @@ def account_object_hook(obj):
         password_hashed=obj["password_hashed"],
     )
 
-def accound_decode(ajson: str):
+def account_decode(ajson: str):
     return loads(ajson, object_hook=account_object_hook)
 
 DEFAULT_REDIS_HOST = "localhost"
@@ -103,5 +103,5 @@ class RedisDBAccounts(DBAccountsInterface):
 
     def get_account_by_id(self, account_id: int) -> Account:
         ajson = self.rdb.hget(_n_accounts, account_id)
-        aobj = accound_decode(ajson)
+        aobj = account_decode(ajson)
         return aobj

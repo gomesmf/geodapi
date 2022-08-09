@@ -1,5 +1,5 @@
 from unittest import main, TestCase
-from accounts.adapters.redisdb import RedisDBAccounts, accound_decode, account_encode
+from accounts.adapters.redisdb import RedisDBAccounts, account_decode, account_encode
 from accounts.entities import Account
 from accounts.tests.utils import VLD_ACCTYPE, VLD_EMAIL, VLD_NAME, VLD_PASSWORD, VLD_USERNAME
 
@@ -30,7 +30,7 @@ class TestAccountEntity(TestCase):
         ajson = account_encode(a)
         self.assertIsInstance(ajson, str)
 
-        aobj = accound_decode(ajson)
+        aobj = account_decode(ajson)
         self.assertIsInstance(aobj, Account)
 
     def test_create_account(self):
