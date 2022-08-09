@@ -5,7 +5,7 @@ from accounts.adapters.web import AccountsService
 from accounts.auth import authorize_account
 from deliveries.adapters.web import DeliveriesService
 
-from .config import (
+from app.config import (
     get_db_accounts,
     get_db_deliveries,
     get_passwd_manager,

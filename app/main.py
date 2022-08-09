@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
-from .dependencies import dba, pv, credentials_exception
-from .routers import accounts, distances
+from app.dependencies import dba, pv, credentials_exception
+from app.routers import accounts, distances
 
 from accounts.auth import authenticate_account, create_account_id_access_token
 

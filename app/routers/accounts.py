@@ -11,7 +11,7 @@ from accounts.adapters.web import (
 from accounts.usecases.CreateAccount.controller import CreateAccountReqM
 from accounts.usecases.CreateAccount.view import CreateAccountResM
 
-from ..dependencies import get_current_account, acs
+from app.dependencies import get_current_account, acs
 
 router = APIRouter(
     prefix="/accounts",
