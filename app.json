@@ -1,0 +1,9 @@
+{
+    "name": "Geodesic Distance API",
+    "description": "Compute geodesic distance between two addresses (street, house_number, city, country)",
+    "env": {
+        "PWD_HASHING": {
+            "generator": "passlib"
+        }
+    }
+}
