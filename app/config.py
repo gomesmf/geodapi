@@ -2,6 +2,8 @@ import json
 
 from passlib.context import CryptContext
 
+from accounts.adapters.redisdb import RedisDBAccounts
+
 from accounts.adapters.helpers import fake_password_hash, fake_password_verify, get_inmemdba
 from deliveries.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
 from deliveries.adapters.nominatim import NominatimSearch
@@ -16,7 +18,7 @@ def get_db_accounts(configd):
     dba = get_inmemdba()
     if configd.get("db_accounts") == "redis":
         print("using redis database for accounts")
-        pass
+        dba = RedisDBAccounts()
     return dba
 
 def get_passwd_manager(configd):

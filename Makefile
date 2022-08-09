@@ -11,6 +11,10 @@ test_nominatim: export PYTHONPATH=${PWD}
 test_nominatim:
 	cd deliveries/tests && python3 -m unittest -v test_nominatim
 
+test_accounts_redisdb: export PYTHONPATH=${PWD}
+test_accounts_redisdb:
+	cd accounts/tests && python3 -m unittest -v test_redisdb
+
 test: test_accounts test_deliveries
 
 updatereqs:
@@ -67,3 +71,13 @@ cbashredis:
 
 cbashdg:
 	docker exec -it dg-api-1 bash
+
+.PHONY: data
+data:
+	-mkdir -p data
+
+redis: data
+	-redis-server redis.conf
+
+cleandata:
+	rm -rf data

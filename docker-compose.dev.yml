@@ -6,8 +6,7 @@ services:
     ports:
       - "8000:5000"
     volumes:
-      - .:/code
-      - ./app:/dg/app
+      - .:/dg
   redis:
     image: "redis:alpine"
     volumes:
