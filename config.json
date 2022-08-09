@@ -1,6 +1,6 @@
 {
-    "db_accounts": "redis",
-    "db_deliveries": "redis",
+    "db_accounts": "inmem",
+    "db_deliveries": "inmem",
     "pwdhashing": "passlib",
     "search_service": "nominatim",
     "distance_service": "geopy"
