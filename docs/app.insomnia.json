@@ -1,0 +1,507 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2022-08-09T01:44:07.082Z",
+    "__export_source": "insomnia.desktop.app:v2022.5.0",
+    "resources": [
+        {
+            "_id": "req_a8b9fd4693424b42bf72c2191a587bcf",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659996827045,
+            "created": 1659990920966,
+            "url": "localhost:8000/accounts/me",
+            "name": "Get current account",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {
+                "type": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ7XCJhY2NvdW50X2lkXCI6IDF9IiwiZXhwIjoxNjU5OTk3NDE4fQ.UqusRFK8-p8RcNG8scULQnzuXyXb93JYSbU9vzYqLJU"
+            },
+            "metaSortKey": -1659990920966,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "parentId": null,
+            "modified": 1659731920454,
+            "created": 1659731920454,
+            "name": "delivery guys platform",
+            "description": "",
+            "scope": "design",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_a58c6f06bd9e4618b858caed57a72ba1",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659997020233,
+            "created": 1659988501087,
+            "url": "localhost:8000/login",
+            "name": "Login (alice)",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "multipart/form-data",
+                "params": [
+                    {
+                        "id": "pair_e7cff647d6f54665890b9d97117b6043",
+                        "name": "username",
+                        "value": "alice",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_3599411ea2ba48f1849517b93700f262",
+                        "name": "password",
+                        "value": "secret",
+                        "description": ""
+                    }
+                ]
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "multipart/form-data",
+                    "id": "pair_a6063a0bb1c24b7bb463828aab424234"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1659988501087,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_0d78b7c66e6541f1bd6f64ab425c4259",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659997080164,
+            "created": 1659991619274,
+            "url": "localhost:8000/login",
+            "name": "Login (bob)",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "multipart/form-data",
+                "params": [
+                    {
+                        "id": "pair_e7cff647d6f54665890b9d97117b6043",
+                        "name": "username",
+                        "value": "bobb",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_3599411ea2ba48f1849517b93700f262",
+                        "name": "password",
+                        "value": "secret",
+                        "description": ""
+                    }
+                ]
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "multipart/form-data",
+                    "id": "pair_a6063a0bb1c24b7bb463828aab424234"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1659937759161.5,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_6ed17f5cdd2f4b67acfefd4e3329ba8f",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1660001764939,
+            "created": 1659887017236,
+            "url": "localhost:8000/distances",
+            "name": "Get distances",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {
+                "type": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ7XCJhY2NvdW50X2lkXCI6IDF9IiwiZXhwIjoxNjYwMDAyMzU1fQ.KfhpjxPfKulX886k6FRWklWuO1XY3qHSzyTmGULA3uY"
+            },
+            "metaSortKey": -1659887017236,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_d5227421162940bda1ec9e650bc08c7a",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1660001769582,
+            "created": 1659886857234,
+            "url": "localhost:8000/distances",
+            "name": "Compute distance",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n  \"origin\": {\n    \"street\": \"turquia\",\n    \"house_number\": 218,\n    \"city\": \"ribeirao pires\",\n    \"country\": \"brasil\"\n  },\n  \"destination\": {\n    \"street\": \"siria\",\n    \"house_number\": 111,\n    \"city\": \"ribeirao pires\",\n    \"country\": \"brasil\"\n  }\n}\n"
+            },
+            "parameters": [
+                {
+                    "id": "pair_7281a6a1cc1c4810b1e9ce1f8d44e05e",
+                    "name": "account_id",
+                    "value": "1",
+                    "description": ""
+                }
+            ],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_934bd5fa04af459d95c54f5f16707427"
+                }
+            ],
+            "authentication": {
+                "type": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ7XCJhY2NvdW50X2lkXCI6IDF9IiwiZXhwIjoxNjYwMDAyMzU1fQ.KfhpjxPfKulX886k6FRWklWuO1XY3qHSzyTmGULA3uY"
+            },
+            "metaSortKey": -1659886857234,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_c815f57ef4d34de799ad1d7894a6d067",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1660001195884,
+            "created": 1659980888505,
+            "url": "localhost:8000/distances",
+            "name": "Compute distance (2)",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n  \"origin\": {\n    \"street\": \"turquia\",\n    \"house_number\": 218,\n    \"city\": \"ribeirao pires\",\n    \"country\": \"brasil\"\n  },\n  \"destination\": {\n    \"street\": \"av. paulista\",\n    \"house_number\": 1374,\n    \"city\": \"sao paulo\",\n    \"country\": \"brasil\"\n  }\n}\n"
+            },
+            "parameters": [
+                {
+                    "id": "pair_7281a6a1cc1c4810b1e9ce1f8d44e05e",
+                    "name": "account_id",
+                    "value": "1",
+                    "description": ""
+                }
+            ],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_934bd5fa04af459d95c54f5f16707427"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1659809434545,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_d42a7b5b26004fdda6801fed2ca729bd",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659998675274,
+            "created": 1659732011856,
+            "url": "localhost:8000/accounts",
+            "name": "Create account (alice)",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "multipart/form-data",
+                "params": [
+                    {
+                        "id": "pair_35f7caf76a2941b7a575089d9cbd0c87",
+                        "name": "name",
+                        "value": "Alice",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_bc9b3de73e0b482caa44aa5bbcca77d3",
+                        "name": "username",
+                        "value": "alice",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_62d7fc94f3424331a98318179b48460c",
+                        "name": "email",
+                        "value": "alice@gmail.com",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_23b85686b2584271ae847010fbecf1d1",
+                        "name": "password",
+                        "value": "secret",
+                        "description": ""
+                    }
+                ]
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "multipart/form-data",
+                    "id": "pair_dbd59163f89e4582ba4a49cc76de9bbd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1659732011856,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_78ba70ee0fe0463f874429e70d5e896e",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1660001747469,
+            "created": 1659994368767,
+            "url": "localhost:8000/signup",
+            "name": "Create account (bob)",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "multipart/form-data",
+                "params": [
+                    {
+                        "id": "pair_35f7caf76a2941b7a575089d9cbd0c87",
+                        "name": "name",
+                        "value": "Bob Mar",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_bc9b3de73e0b482caa44aa5bbcca77d3",
+                        "name": "username",
+                        "value": "bobb",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_62d7fc94f3424331a98318179b48460c",
+                        "name": "email",
+                        "value": "bobb@gmail.com",
+                        "description": ""
+                    },
+                    {
+                        "id": "pair_23b85686b2584271ae847010fbecf1d1",
+                        "name": "password",
+                        "value": "secret",
+                        "description": ""
+                    }
+                ]
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "multipart/form-data",
+                    "id": "pair_dbd59163f89e4582ba4a49cc76de9bbd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1659670203703.75,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_a747d8cec8bc45d1b3f0ae38dfafbb6a",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1660002167409,
+            "created": 1659966513648,
+            "url": "localhost:8000/accounts/me",
+            "name": "Update account",
+            "description": "",
+            "method": "PUT",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\": \"Matheus Felipe Gomes\",\n\t\"username\": \"bobb2\",\n\t\"password\": \"gggg\",\n\t\"password_again\": \"gggg\"\n}"
+            },
+            "parameters": [
+                {
+                    "id": "pair_0bc21c2462124cdca59ad79c59a039ab",
+                    "name": "account_id",
+                    "value": "1",
+                    "description": ""
+                }
+            ],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_dbd59163f89e4582ba4a49cc76de9bbd"
+                }
+            ],
+            "authentication": {
+                "type": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ7XCJhY2NvdW50X2lkXCI6IDF9IiwiZXhwIjoxNjU5OTk3NjIxfQ.ZS4jmPSbWsbgZNlP6SL7gE5H_YK4_9AWxjjU-pGMqaQ"
+            },
+            "metaSortKey": -1659608395551.5,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_55a86ae6531145b78713bab3677e87a0",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659990313550,
+            "created": 1659732185376,
+            "url": "localhost:8000/accounts/all",
+            "name": "Get accounts",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1659484779247,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_c6e690ef210a4ea9abfae9aa07b88cdc",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1660001743492,
+            "created": 1659754939224,
+            "url": "localhost:8000/accounts/1",
+            "name": "Update account",
+            "description": "",
+            "method": "PUT",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n  \"email\": \"kkkk@gmail.com\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_ffa234a2de334903a5e9bde8b357c30c"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1659484779222,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_124748ea696c4b0d99a56abd91e30d99",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659755098689,
+            "created": 1659743787250,
+            "url": "localhost:8000/accounts/2",
+            "name": "Delete account",
+            "description": "",
+            "method": "DELETE",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1659484779197,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "env_9d59dcbf48df0928f7e39c7eee59f6e4e6b6e16b",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659731920459,
+            "created": 1659731920459,
+            "name": "Base Environment",
+            "data": {},
+            "dataPropertyOrder": null,
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1659731920459,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_9d59dcbf48df0928f7e39c7eee59f6e4e6b6e16b",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659731920460,
+            "created": 1659731920460,
+            "name": "Default Jar",
+            "cookies": [],
+            "_type": "cookie_jar"
+        },
+        {
+            "_id": "spc_8dfaeb3757c244d8aeffa2da809e8cc5",
+            "parentId": "wrk_cfc6a99b9a854f1086c8f79a2d0d6c4c",
+            "modified": 1659731979841,
+            "created": 1659731920455,
+            "fileName": "Delivery Guy Platform",
+            "contents": "",
+            "contentType": "yaml",
+            "_type": "api_spec"
+        }
+    ]
+}
