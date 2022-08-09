@@ -1,4 +1,5 @@
 from json import JSONEncoder, dumps, loads
+import os
 from accounts.entities import Account
 from accounts.interfaces.data import DBAccountsInterface
 
@@ -24,7 +25,7 @@ def account_object_hook(obj):
 def account_decode(ajson: str):
     return loads(ajson, object_hook=account_object_hook)
 
-DEFAULT_REDIS_HOST = "localhost"
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
 
 _k_last_user_id = "last_user_id"
 _n_accounts = "accounts"
@@ -32,7 +33,7 @@ _n_username_id = "username_id"
 _n_email_id = "email_id"
 
 class RedisDBAccounts(DBAccountsInterface):
-    def __init__(self, host: str = DEFAULT_REDIS_HOST) -> None:
+    def __init__(self, host: str = REDIS_HOST) -> None:
         self.rdb = redis.Redis(host=host, decode_responses=True)
 
         if not self.rdb.exists(_k_last_user_id):

@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 from typing import List, Tuple
 from deliveries.entities import Address, Distance
 from deliveries.interfaces.data import DBDistancesInterface, DistanceResult
@@ -55,7 +56,7 @@ def distance_object_hook(obj) -> Distance:
 def distance_decode(djson: str) -> Distance:
     return loads(djson, object_hook=distance_object_hook)
 
-DEFAULT_REDIS_HOST = "localhost"
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
 
 _k_distances = "distances"
 
@@ -65,7 +66,7 @@ def _n_distaccid(account_id: int) -> str:
 MAX_NUM_LAST_QUERIES = 10
 
 class RedisDBDistances(DBDistancesInterface):
-    def __init__(self, host: str = DEFAULT_REDIS_HOST) -> None:
+    def __init__(self, host: str = REDIS_HOST) -> None:
         self.rdb = redis.Redis(host=host, decode_responses=True)
 
     def _flush(self):
