@@ -11,7 +11,6 @@ from app.config import (
     get_passwd_manager,
     get_search_service,
     get_distance_service,
-    read_config,
 )
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
@@ -34,12 +33,11 @@ async def get_current_account(token: str = Depends(oauth2_scheme)):
         raise unauthorized_exception
     return acc
 
-configd = read_config()
-dba = get_db_accounts(configd)
-dbd = get_db_deliveries(configd)
-ph, pv = get_passwd_manager(configd)
-ss = get_search_service(configd)
-ds = get_distance_service(configd)
+dba = get_db_accounts()
+dbd = get_db_deliveries()
+ph, pv = get_passwd_manager()
+ss = get_search_service()
+ds = get_distance_service()
 
 acs = AccountsService(dba, ph)
 delis = DeliveriesService(acs, ss, ds, dbd)

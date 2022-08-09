@@ -8,7 +8,12 @@ services:
     volumes:
       - .:/dg
     environment:
+      - PWD_HASHING=passlib
+      - DB_ACCOUNTS=redis
+      - DB_DISTANCES=redis
       - REDIS_HOST=redis
+      - SEARCH_SERVICE=nominatim
+      - DISTANCE_SERVICE=geopy
   redis:
     image: "redis:alpine"
     volumes:
