@@ -38,26 +38,26 @@ runapp: PYTHONPATH=${PWD}
 runapp:
 	python3 -m uvicorn app.main:app --reload --host 0.0.0.0 --port ${PORT}
 
-DG_IMGNAME = dgapi
-DG_CNAME = dgapi
-builddg:
-	docker build -t ${DG_IMGNAME} -f ./Dockerfile .
+GEODAPI_IMGNAME = geodapi
+GEODAPI_CNAME = geodapi
+buildgeodapi:
+	docker build -t ${GEODAPI_IMGNAME} -f ./Dockerfile .
 
-rundg:
+rungeodapi:
 	docker run -d \
-		--name ${DG_CNAME} \
+		--name ${GEODAPI_CNAME} \
 		-p 8000:5000 \
-		-v ${PWD}/app:/dg/app \
-		${DG_IMGNAME}
+		-v ${PWD}/app:/geodapi/app \
+		${GEODAPI_IMGNAME}
 
-bashdg:
-	docker exec -it ${DG_CNAME} bash
+bashgeodapi:
+	docker exec -it ${GEODAPI_CNAME} bash
 
-rmfdg:
-	docker rm -f ${DG_CNAME}
+rmfgeodapi:
+	docker rm -f ${GEODAPI_CNAME}
 
-logsdg:
-	docker logs --tail 1000 -f ${DG_CNAME}
+logsgeodapi:
+	docker logs --tail 1000 -f ${GEODAPI_CNAME}
 
 cup:
 	docker compose -f docker-compose.dev.yml up -d
@@ -74,10 +74,10 @@ ckill:
 	docker compose -f docker-compose.dev.yml kill
 
 cbashredis:
-	docker exec -it dg-redis-1 sh
+	docker exec -it geodapi-redis-1 sh
 
-cbashdg:
-	docker exec -it dg-api-1 bash
+cbashgeodapi:
+	docker exec -it geodapi-api-1 bash
 
 .PHONY: data
 data:

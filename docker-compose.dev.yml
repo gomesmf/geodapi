@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-    image: "dgapi"
+    image: "geodapi"
     ports:
       - "8000:5000"
     volumes:
