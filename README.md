@@ -47,8 +47,13 @@ make build
 make cup
 ```
 
-## Prod
+## Download and Go
 
+- Build image
 ```
-bash qbapi.sh [start|stop|kill|restart]
+make build
+```
+- Deploy the application
+```
+bash geodapi.sh [start|stop|kill|restart]
 ```
