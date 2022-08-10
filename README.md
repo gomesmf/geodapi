@@ -8,7 +8,7 @@ It uses the [Nominatim](https://nominatim.org/release-docs/develop/api/Search/) 
 
 ## Download and Go
 
-- Build image
+- Build image geodapi
 ```
 make build
 ```
