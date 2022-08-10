@@ -57,3 +57,91 @@ make build
 ```
 make cup
 ```
+
+## Use cases
+
+![](docs/geodapi-use-cases.drawio.png)
+
+## Clean architecture
+
+![](docs/cleanarchitecture.drawio.png)
+
+## Multi-container application
+
+![](docs/geodapi-compose.drawio.png)
+
+## Directory listing
+
+```
+.
+├── accounts
+│   ├── adapters
+│   │   ├── helpers.py
+│   │   ├── redisdb.py
+│   │   └── web.py
+│   ├── interfaces
+│   │   ├── data.py
+│   │   └── service.py
+│   ├── usecases
+│   │   ├── CreateAccount
+│   │   │   ├── controller.py
+│   │   │   ├── interactor.py
+│   │   │   ├── presenter.py
+│   │   │   └── view.py
+│   │   ├── DeleteAccount
+│   │   │   ├── controller.py
+│   │   │   ├── interactor.py
+│   │   │   ├── presenter.py
+│   │   │   └── view.py
+│   │   ├── GetAccountTypes
+│   │   │   ├── controller.py
+│   │   │   ├── interactor.py
+│   │   │   ├── presenter.py
+│   │   │   └── view.py
+│   │   ├── UpdateAccount
+│   │   │   ├── controller.py
+│   │   │   ├── interactor.py
+│   │   │   ├── presenter.py
+│   │   │   └── view.py
+│   │   └── common.py
+│   ├── auth.py
+│   └── entities.py
+├── app
+│   ├── routers
+│   │   ├── __init__.py
+│   │   ├── accounts.py
+│   │   └── distances.py
+│   ├── __init__.py
+│   ├── config.py
+│   ├── dependencies.py
+│   └── main.py
+├── distances
+│   ├── adapters
+│   │   ├── geo.py
+│   │   ├── helpers.py
+│   │   ├── nominatim.py
+│   │   ├── redisdb.py
+│   │   └── web.py
+│   ├── interfaces
+│   │   ├── data.py
+│   │   ├── external.py
+│   │   └── service.py
+│   ├── usecases
+│   │   ├── ComputeDistance
+│   │   │   ├── controller.py
+│   │   │   ├── interactor.py
+│   │   │   ├── presenter.py
+│   │   │   └── view.py
+│   │   ├── GetDistances
+│   │   │   ├── controller.py
+│   │   │   ├── interactor.py
+│   │   │   ├── presenter.py
+│   │   │   └── view.py
+│   │   └── common.py
+│   └── entities.py
+├── Dockerfile
+├── Makefile
+├── entrypoint.sh
+├── geodapi.sh
+└── requirements.txt
+```

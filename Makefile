@@ -96,3 +96,18 @@ cleanpycache:
 	find . -type d -name __pycache__ -exec rm -rf {} \;
 
 cleandir: cleandata cleanpycache
+
+tree:
+	tree \
+		-I venv \
+		-I data \
+		-I etc \
+		-I docs \
+		-I README.md \
+		-I runtime.txt \
+		-I archive \
+		-I Procfile \
+		-I docker-compose.dev.yml \
+		-I docker-compose.yml \
+		-I accounts/tests \
+		--dirsfirst
