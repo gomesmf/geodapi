@@ -1,9 +1,9 @@
 from datetime import datetime
 import os
 from typing import List, Tuple
-from deliveries.entities import Address, Distance
-from deliveries.interfaces.data import DBDistancesInterface, DistanceResult
-from deliveries.interfaces.external import SearchResult
+from distances.entities import Address, Distance
+from distances.interfaces.data import DBDistancesInterface, DistanceResult
+from distances.interfaces.external import SearchResult
 
 from json import JSONEncoder, dumps, loads
 

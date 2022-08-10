@@ -1,5 +1,5 @@
-from deliveries.entities import Address
-from deliveries.interfaces.external import SearchServiceInterface, SearchResult
+from distances.entities import Address
+from distances.interfaces.external import SearchServiceInterface, SearchResult
 import requests
 
 SEARCH_ENDPOINT = "https://nominatim.openstreetmap.org/search"

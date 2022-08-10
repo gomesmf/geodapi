@@ -3,9 +3,9 @@ import json
 from passlib.context import CryptContext
 
 from accounts.adapters.helpers import fake_password_hash, fake_password_verify, get_inmemdba
-from deliveries.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
-from deliveries.adapters.nominatim import NominatimSearch
-from deliveries.adapters.geo import GeopyDistanceService
+from distances.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
+from distances.adapters.nominatim import NominatimSearch
+from distances.adapters.geo import GeopyDistanceService
 
 with open("config.json") as f:
     configd = json.load(f)
@@ -29,8 +29,8 @@ if configd.get("pwdhashing") == "passlib":
     ph = pwd_context.hash
     pv = pwd_context.verify
 
-if configd.get("db_deliveries") == "redis":
-    print("using redis database for deliveries")
+if configd.get("db_distances") == "redis":
+    print("using redis database for distances")
     pass
 
 if configd.get("search_service") == "nominatim":

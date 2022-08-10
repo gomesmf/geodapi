@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import List, Tuple
 
 from .external import SearchResult
-from deliveries.entities import Address, Distance
+from distances.entities import Address, Distance
 
 class DistanceResult:
     def __init__(self, origin: Address, destination: Address, distance: List[Distance], datetime: datetime) -> None:

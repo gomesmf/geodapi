@@ -16,12 +16,12 @@ from accounts.adapters.web import (
     CreateAccountReqM,
     CreateAccountResM
 )
-from deliveries.adapters.web import (
-    DeliveriesService,
+from distances.adapters.web import (
+    GeodistanceService,
     ComputeDistanceReqM,
     ComputeDistanceResM
 )
-from deliveries.usecases.GetDistances.view import GetDistancesResM
+from distances.usecases.GetDistances.view import GetDistancesResM
 
 from config import dba, dbd, ss, ds, ph, pv
 
@@ -29,7 +29,7 @@ app = FastAPI(description="Delivery Guy API")
 
 acs = AccountsService(dba, ph)
 
-delis = DeliveriesService(acs, ss, ds, dbd)
+geods = GeodistanceService(acs, ss, ds, dbd)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -106,7 +106,7 @@ def update_account(reqm: UpdateAccountReqM, current_account: AccountM = Depends(
 
 @app.post("/distances", response_model=ComputeDistanceResM)
 def compute_distance(reqm: ComputeDistanceReqM, current_account: AccountM = Depends(get_current_account)):
-    resm = delis.compute_distance(current_account.account_id, reqm)
+    resm = geods.compute_distance(current_account.account_id, reqm)
 
     if resm.errmsg:
         return JSONResponse(status_code=400, content=resm.dict())
@@ -115,7 +115,7 @@ def compute_distance(reqm: ComputeDistanceReqM, current_account: AccountM = Depe
 
 @app.get("/distances", response_model=GetDistancesResM)
 def get_distances(current_account: AccountM = Depends(get_current_account)):
-    resm = delis.get_distances(current_account.account_id)
+    resm = geods.get_distances(current_account.account_id)
 
     if resm.errmsg:
         return JSONResponse(status_code=400, content=resm.dict())

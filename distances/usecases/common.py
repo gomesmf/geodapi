@@ -1,5 +1,5 @@
 from datetime import datetime
-from deliveries.entities import Address, Distance
+from distances.entities import Address, Distance
 from pydantic import BaseModel
 
 def dist_between_text(orig: Address, dest: Address, dist: Distance):

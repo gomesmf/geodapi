@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 from unittest import main, TestCase, skipIf
-from deliveries.adapters.redisdb import (
+from distances.adapters.redisdb import (
     RedisDBDistances,
     address_decode,
     address_encode,
@@ -12,12 +12,12 @@ from deliveries.adapters.redisdb import (
     searchres_decode,
     searchres_encode
 )
-from deliveries.entities import Address, Distance
-from deliveries.interfaces.data import DistanceResult
-from deliveries.interfaces.external import SearchResult
+from distances.entities import Address, Distance
+from distances.interfaces.data import DistanceResult
+from distances.interfaces.external import SearchResult
 
 @skipIf(os.getenv("SKIP_TEST_REDISDB") == None, "must have redis-server running")
-class TestRedisDBDeliveries(TestCase):
+class TestRedisDBGeodistance(TestCase):
     def test_address_encode(self):
         addr = Address(
             street="av miguel prisco",

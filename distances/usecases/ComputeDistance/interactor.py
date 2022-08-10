@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import List, Tuple
 from accounts.interfaces.service import AccountsServiceInterface
-from deliveries.entities import Address, Distance
-from deliveries.interfaces.data import DBDistancesInterface
-from deliveries.interfaces.external import SearchResult, SearchServiceInterface, DistanceServiceInterface
+from distances.entities import Address, Distance
+from distances.interfaces.data import DBDistancesInterface
+from distances.interfaces.external import SearchResult, SearchServiceInterface, DistanceServiceInterface
 
 class ComputeDistanceUCI:
     def __init__(self, account_id: int, origin: Address, destination: Address) -> None:

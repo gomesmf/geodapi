@@ -2,27 +2,27 @@ test_accounts: export PYTHONPATH=${PWD}
 test_accounts:
 	cd accounts/tests && python3 -m unittest -v
 
-test_deliveries: export SKIP_NOMINATIM_REQUEST=1
-test_deliveries: export PYTHONPATH=${PWD}
-test_deliveries:
-	cd deliveries/tests && python3 -m unittest -v
+test_distances: export SKIP_NOMINATIM_REQUEST=1
+test_distances: export PYTHONPATH=${PWD}
+test_distances:
+	cd distances/tests && python3 -m unittest -v
 
 test_nominatim: export PYTHONPATH=${PWD}
 test_nominatim:
-	cd deliveries/tests && python3 -m unittest -v test_nominatim
+	cd distances/tests && python3 -m unittest -v test_nominatim
 
 test_accounts_redisdb: export PYTHONPATH=${PWD}
 test_accounts_redisdb:
 	cd accounts/tests && python3 -m unittest -v test_redisdb
 
-test_deliveries_redisdb: export PYTHONPATH=${PWD}
-test_deliveries_redisdb:
-	cd deliveries/tests && python3 -m unittest -v test_redisdb
+test_distances_redisdb: export PYTHONPATH=${PWD}
+test_distances_redisdb:
+	cd distances/tests && python3 -m unittest -v test_redisdb
 
-test: test_accounts test_deliveries
+test: test_accounts test_distances
 
 test_redisdb: export SKIP_TEST_REDISDB=0
-test_redisdb: test_accounts_redisdb test_deliveries_redisdb
+test_redisdb: test_accounts_redisdb test_distances_redisdb
 
 updatereqs:
 	python3 -m pip freeze > requirements.txt

@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 
-from deliveries.usecases.ComputeDistance.controller import ComputeDistanceReqM
-from deliveries.usecases.ComputeDistance.view import ComputeDistanceResM
-from deliveries.usecases.GetDistances.view import GetDistancesResM
+from distances.usecases.ComputeDistance.controller import ComputeDistanceReqM
+from distances.usecases.ComputeDistance.view import ComputeDistanceResM
+from distances.usecases.GetDistances.view import GetDistancesResM
 
 
-class DeliveriesServiceInterface(ABC):
+class GeodistanceServiceInterface(ABC):
     @abstractmethod
     def compute_distance(self, account_id: int, reqm: ComputeDistanceReqM) -> ComputeDistanceResM:
         pass

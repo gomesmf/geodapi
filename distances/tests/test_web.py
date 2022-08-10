@@ -2,12 +2,12 @@ from datetime import datetime
 from unittest import main, TestCase
 from unittest.mock import Mock
 
-from deliveries.adapters.web import DeliveriesService, ComputeDistanceReqM, ComputeDistanceResM
-from deliveries.entities import Distance, Address
-from deliveries.interfaces.data import DistanceResult
-from deliveries.interfaces.external import SearchResult
-from deliveries.usecases.ComputeDistance.controller import AddressM
-from deliveries.usecases.GetDistances.view import GetDistancesResM
+from distances.adapters.web import GeodistanceService, ComputeDistanceReqM, ComputeDistanceResM
+from distances.entities import Distance, Address
+from distances.interfaces.data import DistanceResult
+from distances.interfaces.external import SearchResult
+from distances.usecases.ComputeDistance.controller import AddressM
+from distances.usecases.GetDistances.view import GetDistancesResM
 
 class TestComputeDistance(TestCase):
     def test_success(self):
@@ -28,7 +28,7 @@ class TestComputeDistance(TestCase):
         dbd = Mock()
         dbd.add_distance.return_value = True
 
-        delis = DeliveriesService(acs, ss, ds, dbd)
+        geods = GeodistanceService(acs, ss, ds, dbd)
 
         account_id = 1
         reqm = ComputeDistanceReqM(
@@ -46,7 +46,7 @@ class TestComputeDistance(TestCase):
             )
         )
 
-        resm = delis.compute_distance(account_id, reqm)
+        resm = geods.compute_distance(account_id, reqm)
 
         self.assertIsInstance(resm, ComputeDistanceResM)
 
@@ -79,10 +79,10 @@ class TestGetDistance(TestCase):
             datetime=datetime.now()
         )], False)
 
-        delis = DeliveriesService(acs, ss, ds, dbd)
+        geods = GeodistanceService(acs, ss, ds, dbd)
 
         account_id = 1
-        resm = delis.get_distances(account_id)
+        resm = geods.get_distances(account_id)
 
         self.assertIsInstance(resm, GetDistancesResM)
 

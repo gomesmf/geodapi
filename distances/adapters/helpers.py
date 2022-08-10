@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import List, Tuple
-from deliveries.entities import Address, Distance
-from deliveries.interfaces.external import SearchServiceInterface, SearchResult, DistanceServiceInterface
-from deliveries.interfaces.data import DBDistancesInterface, DistanceResult
+from distances.entities import Address, Distance
+from distances.interfaces.external import SearchServiceInterface, SearchResult, DistanceServiceInterface
+from distances.interfaces.data import DBDistancesInterface, DistanceResult
 
 class FakeSearchService(SearchServiceInterface):
     def search(self, addr: Address) -> SearchResult:

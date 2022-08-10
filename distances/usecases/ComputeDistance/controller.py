@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from deliveries.entities import Address
+from distances.entities import Address
 
 from .interactor import ComputeDistanceUCI
 

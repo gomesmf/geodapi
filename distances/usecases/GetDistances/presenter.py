@@ -1,7 +1,7 @@
 from typing import Dict, List
-from deliveries.usecases.GetDistances.interactor import GetDistancesUCO
+from distances.usecases.GetDistances.interactor import GetDistancesUCO
 
-from deliveries.usecases.common import datetime_formated, dist_between_text
+from distances.usecases.common import datetime_formated, dist_between_text
 
 class GetDistancesVM:
     def __init__(self, result: List[Dict] = None, errmsg = None) -> None:

@@ -1,9 +1,9 @@
 from typing import Dict, List
-from deliveries.entities import Address, Distance
+from distances.entities import Address, Distance
 
 from .interactor import ComputeDistanceUCO
 
-from deliveries.usecases.common import dist_between_text
+from distances.usecases.common import dist_between_text
 
 class ComputeDistanceVM:
     def __init__(self, result: List[Dict] = None, errmsg: str = None, detail: str = None) -> None:

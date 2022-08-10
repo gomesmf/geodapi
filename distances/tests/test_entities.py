@@ -1,6 +1,6 @@
 from unittest import main, TestCase
 
-from deliveries.entities import Address, Distance
+from distances.entities import Address, Distance
 
 class TestAddress(TestCase):
     def test_instance(self):

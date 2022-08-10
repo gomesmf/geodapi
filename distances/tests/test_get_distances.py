@@ -3,18 +3,18 @@ from unittest.mock import Mock
 
 from datetime import datetime
 
-from deliveries.entities import Address, Distance
-from deliveries.usecases.GetDistances.controller import get_distances_controller
-from deliveries.usecases.GetDistances.interactor import (
+from distances.entities import Address, Distance
+from distances.usecases.GetDistances.controller import get_distances_controller
+from distances.usecases.GetDistances.interactor import (
     ERRMSG_CANNOT_GET_DISTANCES,
     DistanceResult,
     GetDistancesUCI,
     GetDistancesUCO,
     get_distances_interactor
 )
-from deliveries.usecases.GetDistances.presenter import GetDistancesVM, get_distances_presenter
-from deliveries.usecases.GetDistances.view import AddressCompletM, GetDistancesResM, ResultM, get_distances_view
-from deliveries.usecases.common import datetime_formated, dist_between_text
+from distances.usecases.GetDistances.presenter import GetDistancesVM, get_distances_presenter
+from distances.usecases.GetDistances.view import AddressCompletM, GetDistancesResM, ResultM, get_distances_view
+from distances.usecases.common import datetime_formated, dist_between_text
 
 class TestInteractor(TestCase):
     def test_success(self):

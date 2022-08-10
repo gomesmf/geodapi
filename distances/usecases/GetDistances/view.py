@@ -1,8 +1,8 @@
 from typing import List
 from pydantic import BaseModel
 
-from deliveries.usecases.GetDistances.presenter import GetDistancesVM
-from deliveries.usecases.common import DistanceResultM
+from distances.usecases.GetDistances.presenter import GetDistancesVM
+from distances.usecases.common import DistanceResultM
 
 class AddressCompletM(BaseModel):
     street: str

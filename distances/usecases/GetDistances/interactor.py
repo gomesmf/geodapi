@@ -1,5 +1,5 @@
 from typing import List
-from deliveries.interfaces.data import DBDistancesInterface, DistanceResult
+from distances.interfaces.data import DBDistancesInterface, DistanceResult
 
 class GetDistancesUCI:
     def __init__(self, account_id: int) -> None:

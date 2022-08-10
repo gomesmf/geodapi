@@ -6,10 +6,10 @@ from accounts.adapters.redisdb import RedisDBAccounts
 
 from accounts.adapters.helpers import fake_password_hash, fake_password_verify, get_inmemdba
 
-from deliveries.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
-from deliveries.adapters.nominatim import NominatimSearch
-from deliveries.adapters.geo import GeopyDistanceService
-from deliveries.adapters.redisdb import RedisDBDistances
+from distances.adapters.helpers import FakeDistanceService, FakeSearchService, get_inmemdbd
+from distances.adapters.nominatim import NominatimSearch
+from distances.adapters.geo import GeopyDistanceService
+from distances.adapters.redisdb import RedisDBDistances
 
 DB_REDIS = "redis"
 PWD_HASHING_PASSLIB = "passlib"
@@ -33,7 +33,7 @@ def get_passwd_manager():
         pv = pwd_context.verify
     return ph, pv
 
-def get_db_deliveries():
+def get_db_distances():
     dbd = get_inmemdbd()
     if os.getenv("DB_DISTANCES") == "redis":
         print("distances database: redis")
