@@ -6,7 +6,18 @@ It uses the [Nominatim](https://nominatim.org/release-docs/develop/api/Search/) 
 
 ![](./docs/geodapi.png)
 
-## Dev
+## Download and Go
+
+- Build image
+```
+make build
+```
+- Deploy the application
+```
+bash geodapi.sh [start|stop|kill|restart]
+```
+
+## Development
 
 - Requirements: python-3.8.9, docker, make
 - Create and activate virtual environment
@@ -45,15 +56,4 @@ make build
 - Run multi-container Docker application (geodapi + redis)
 ```
 make cup
-```
-
-## Download and Go
-
-- Build image
-```
-make build
-```
-- Deploy the application
-```
-bash geodapi.sh [start|stop|kill|restart]
 ```
