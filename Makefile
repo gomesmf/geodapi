@@ -40,7 +40,7 @@ runapp:
 
 GEODAPI_IMGNAME = geodapi
 GEODAPI_CNAME = geodapi
-buildgeodapi:
+build:
 	docker build -t ${GEODAPI_IMGNAME} -f ./Dockerfile .
 
 rungeodapi:
