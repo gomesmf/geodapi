@@ -21,6 +21,9 @@ test_deliveries_redisdb:
 
 test: test_accounts test_deliveries
 
+test_redisdb: export SKIP_TEST_REDISDB=0
+test_redisdb: test_accounts_redisdb test_deliveries_redisdb
+
 updatereqs:
 	python3 -m pip freeze > requirements.txt
 
@@ -82,6 +85,9 @@ data:
 
 redis: data
 	-redis-server ./etc/redis.conf
+
+redisshutdown:
+	-redis-cli shutdown nosave
 
 cleandata:
 	rm -rf data

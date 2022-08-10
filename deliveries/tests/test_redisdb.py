@@ -1,11 +1,22 @@
 from datetime import datetime
-from unittest import main, TestCase
-from deliveries.adapters.redisdb import RedisDBDistances, address_decode, address_encode, datetime_decode, datetime_encode, distance_decode, distance_encode, searchres_decode, searchres_encode
-
+import os
+from unittest import main, TestCase, skipIf
+from deliveries.adapters.redisdb import (
+    RedisDBDistances,
+    address_decode,
+    address_encode,
+    datetime_decode,
+    datetime_encode,
+    distance_decode,
+    distance_encode,
+    searchres_decode,
+    searchres_encode
+)
 from deliveries.entities import Address, Distance
 from deliveries.interfaces.data import DistanceResult
 from deliveries.interfaces.external import SearchResult
 
+@skipIf(os.getenv("SKIP_TEST_REDISDB") == None, "must have redis-server running")
 class TestRedisDBDeliveries(TestCase):
     def test_address_encode(self):
         addr = Address(

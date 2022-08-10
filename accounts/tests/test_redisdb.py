@@ -1,8 +1,11 @@
-from unittest import main, TestCase
+import os
+from unittest import main, TestCase, skipIf
 from accounts.adapters.redisdb import RedisDBAccounts, account_decode, account_encode
 from accounts.entities import Account
 from accounts.tests.utils import VLD_ACCTYPE, VLD_EMAIL, VLD_NAME, VLD_PASSWORD, VLD_USERNAME
 
+
+@skipIf(os.getenv("SKIP_TEST_REDISDB") == None, "must have redis-server running")
 class TestAccountEntity(TestCase):
     def test_encode(self):
         a = Account(
