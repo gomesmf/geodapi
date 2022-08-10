@@ -14,7 +14,7 @@ description = "\n".join([
     "3. Get historical queries (GET /distances)"
 ])
 
-app = FastAPI(description=description, docs_url="/")
+app = FastAPI(title="GeodAPI", description=description, docs_url="/")
 
 app.include_router(accounts.router)
 app.include_router(distances.router)
